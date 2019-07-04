@@ -37,7 +37,6 @@ public class App2 {
     System.out.println("사진: " + picture);
     System.out.println("전화: " + phoneNumber);
     System.out.println("가입일: " + joinDate);
-    
   }
 
 }

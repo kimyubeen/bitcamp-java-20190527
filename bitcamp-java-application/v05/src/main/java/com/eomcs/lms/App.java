@@ -39,6 +39,5 @@ public class App {
     System.out.println("종료일: " + endDate);
     System.out.println("총수업시간: " + totalHours);
     System.out.println("일수업시간: " + dayHours);
-    
   }
 }

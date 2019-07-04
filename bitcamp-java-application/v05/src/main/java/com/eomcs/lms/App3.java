@@ -25,7 +25,6 @@ public class App3 {
     System.out.println("내용: " + content);
     System.out.println("작성일: " + dateOfPreparation);
     System.out.println("조회수: " + hits);
-    
   }
 
 }
