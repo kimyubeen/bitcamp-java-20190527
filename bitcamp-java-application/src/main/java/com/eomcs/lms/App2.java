@@ -6,6 +6,7 @@ public class App2 {
   public static void main(String[] args) {
     java.io.InputStream keyboard = System.in;
     Scanner keyScan = new Scanner(keyboard);
+    java.util.Date today = new java.util.Date();
     
     System.out.print("번호? ");
     String no = keyScan.nextLine();
@@ -25,9 +26,6 @@ public class App2 {
     System.out.print("전화? ");
     String phoneNumber = keyScan.nextLine();
     
-    System.out.print("가입일? ");
-    String joinDate = keyScan.nextLine();
-    
     System.out.println();
     
     System.out.println("번호: " + no);
@@ -36,7 +34,7 @@ public class App2 {
     System.out.println("암호: " + pw);
     System.out.println("사진: " + picture);
     System.out.println("전화: " + phoneNumber);
-    System.out.println("가입일: " + joinDate);
+    System.out.printf("가입일: %1$ty-%1$tm-%1$td\n", today);
     
   }
 
