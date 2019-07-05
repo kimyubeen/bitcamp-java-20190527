@@ -10,23 +10,21 @@ public class App2 {
     java.io.InputStream keyboard = System.in;
     keyScan = new Scanner(keyboard);
     
-    int[] no = new int[100];
-    String[] name = new String[100];
-    String[] email = new String[100];
-    String[] pw = new String[100];
-    String[] picture = new String[100];
-    String[] phoneNumber = new String[100];
-    Date[] registeredDate = new Date[100];
+    Member[] members = new Member[100];
     
     int i = 0;
-    for(; i < no.length; i++) {
-      no[i] = getIntValue("번호?");
-      name[i] = getStringValue("이름? ");
-      email[i] = getStringValue("이메일? ");
-      pw[i] = getStringValue("암호? ");
-      picture[i] = getStringValue("사진? ");
-      phoneNumber[i] = getStringValue("전화? ");
-      registeredDate[i] = new Date(System.currentTimeMillis()); 
+    for(; i < members.length; i++) {
+      Member member = new Member();
+      
+      member.no = getIntValue("번호?");
+      member.name = getStringValue("이름? ");
+      member.email = getStringValue("이메일? ");
+      member.pw = getStringValue("암호? ");
+      member.picture = getStringValue("사진? ");
+      member.phoneNumber = getStringValue("전화? ");
+      member.registerDate = new Date(System.currentTimeMillis());
+      
+      members[i] = member;
           
       System.out.println();
       System.out.printf("계속 입력하시겠습니까?(Y/n)");
@@ -41,7 +39,9 @@ public class App2 {
     
     int i2 = 0;
     for(; i2 <= i; i2++) {
-      System.out.printf("%d, %-5s , %-20s , %-15s , %s\n", no[i2], name[i2], email[i2], phoneNumber[i2], registeredDate[i2]);
+      Member member = members[i2];
+      System.out.printf("%d, %-5s , %-20s , %-15s , %s\n", member.no, member.name, member.email,
+          member.phoneNumber, member.registerDate);
     }
   }
   
