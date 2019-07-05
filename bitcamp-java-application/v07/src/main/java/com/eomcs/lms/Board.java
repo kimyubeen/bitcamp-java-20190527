@@ -8,4 +8,5 @@ public class Board {
   Date createDate;
   int viewCount;
 
+  
 }

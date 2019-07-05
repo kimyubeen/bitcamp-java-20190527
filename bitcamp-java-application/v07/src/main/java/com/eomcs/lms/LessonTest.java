@@ -31,8 +31,6 @@ public class LessonTest {
     System.out.printf("%s -- %s\n", title, lesson.title);
     
     
-    
-    
   }
 
 }

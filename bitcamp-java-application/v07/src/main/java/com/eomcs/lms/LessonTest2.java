@@ -33,6 +33,7 @@ public class LessonTest2 {
     arr2[1] = 2;
     arr2[3] = 3; 
     
+    
   }
 
 }
