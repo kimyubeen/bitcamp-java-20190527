@@ -11,5 +11,6 @@ public class Member {
   String phoneNumber;
   Date registerDate;
   
+  
 }
 
