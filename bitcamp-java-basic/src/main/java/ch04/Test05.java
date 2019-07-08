@@ -25,6 +25,7 @@ public class Test05 {
         = 2 + 12    <== * 연산을 먼저 수행한다.
         = 14
      */
+    System.out.println(r3); // 14
   }
 }
 

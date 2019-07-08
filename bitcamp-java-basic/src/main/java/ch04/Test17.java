@@ -18,6 +18,18 @@ public class Test17 {
     System.out.println(result);
     System.out.println((age >= 19) ? "성인" : "미성년");
     System.out.println((age >= 65) ? "성인" : false);
+    
+    //int a = (age >= 19) ? m1() : m2(); // 컴파일 오류!
+    int b = (age >= 19) ? m2() : 100 + 2 - 4 * 2 + Math.abs(-100);
+    
+  }
+  
+  static void m1() {
+    
+  }
+  
+  static int m2() {
+    return 0;
   }
 }
 
