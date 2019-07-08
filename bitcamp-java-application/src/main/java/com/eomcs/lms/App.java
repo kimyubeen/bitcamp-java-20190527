@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.util.Scanner;
 
 public class App {
+  
   static Scanner keyScan;
   
   public static void main(String[] args) {
@@ -15,13 +16,13 @@ public class App {
     Lesson[] lessons = new Lesson[100];
     
     int i = 0;
-    for (; i < lessons.length; i++) {
+    for ( ; i < lessons.length; i++) {
       
-      // 수업 데이터를 저장할 메모리는 Lesson 설계도에 따라 만든다.
+      // 수업 데이터를 저장할 메모리를 Lesson 설계도에 따라 만든다.
       Lesson lesson = new Lesson();
       
       // 사용자가 입력한 값을 Lesson 인스턴스의 각 변수에 저장한다.
-      lesson.no = getIntValue("번호?");
+      lesson.no = getIntValue("번호? ");
       lesson.title = getStringValue("수업명? ");
       lesson.contents = getStringValue("설명? ");
       lesson.startDate = getDateValue("시작일? ");
@@ -32,17 +33,12 @@ public class App {
       // 수업 데이터를 저장하고 있는 인스턴스의 주소를 레퍼런스 배열에 저장한다.
       lessons[i] = lesson;
       
-      System.out.println();
       System.out.print("계속 입력하시겠습니까?(Y/n) ");
       String response = keyScan.nextLine();
-      System.out.println();
       
       if (response.equals("n"))
         break;
-      
     }
-    
-    keyScan.close();
     
     System.out.println();
     
@@ -52,14 +48,13 @@ public class App {
       Lesson lesson = lessons[i2];
       
       // 그 인스턴스 주소로 찾아가서 인스턴스의 각 변수 값을 꺼내 출력한다.
-      System.out.printf("%d, %s, %s ~ %s, %d\n", lesson.no, lesson.title,
+      System.out.printf("%s, %s, %s ~ %s, %s\n", 
+          lesson.no, lesson.title, 
           lesson.startDate, lesson.endDate, lesson.totalHours);
     }
-    
   }
   
   private static int getIntValue(String message) {
-    int value = 0;
     while (true) {
       try {
         System.out.print(message);
@@ -68,11 +63,6 @@ public class App {
         System.out.println("숫자를 입력하세요.");
       }
     }
-  }
-  
-  private static String getStringValue(String message) {
-    System.out.print(message);
-    return keyScan.nextLine();
   }
   
   private static Date getDateValue(String message) {
@@ -86,5 +76,8 @@ public class App {
     }
   }
   
-  
+  private static String getStringValue(String message) {
+    System.out.print(message);
+    return keyScan.nextLine();
+  }
 }

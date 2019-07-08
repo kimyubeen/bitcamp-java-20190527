@@ -6,9 +6,9 @@ public class Member {
   int no;
   String name;
   String email;
-  String pw;
-  String picture;
-  String phoneNumber;
+  String password;
+  String photo;
+  String tel;
   Date registerDate;
   
   

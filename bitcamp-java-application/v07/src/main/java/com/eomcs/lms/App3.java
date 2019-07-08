@@ -41,13 +41,14 @@ public class App3 {
     for(; i2 <= i; i2++) {
       Board board = new Board();
       board = boards[i2];
+      
+      //Board board = boards[i2]; //위의 두 줄을 한번에
       System.out.printf("%d, %-20s , %-10s, %d\n", board.no, board.contents, board.createDate, board.viewCount);
     }
     
   }
 
   private static int getIntValue(String message) {
-    int value = 0;
     while (true) {
       try {
         System.out.print(message);

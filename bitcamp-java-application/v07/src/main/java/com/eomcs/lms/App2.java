@@ -19,9 +19,9 @@ public class App2 {
       member.no = getIntValue("번호?");
       member.name = getStringValue("이름? ");
       member.email = getStringValue("이메일? ");
-      member.pw = getStringValue("암호? ");
-      member.picture = getStringValue("사진? ");
-      member.phoneNumber = getStringValue("전화? ");
+      member.password = getStringValue("암호? ");
+      member.photo = getStringValue("사진? ");
+      member.tel = getStringValue("전화? ");
       member.registerDate = new Date(System.currentTimeMillis());
       
       members[i] = member;
@@ -41,12 +41,11 @@ public class App2 {
     for(; i2 <= i; i2++) {
       Member member = members[i2];
       System.out.printf("%d, %-5s , %-20s , %-15s , %s\n", member.no, member.name, member.email,
-          member.phoneNumber, member.registerDate);
+          member.tel, member.registerDate);
     }
   }
   
   public static int getIntValue(String message) {
-    int value = 0;
     while (true) {
       try {
         System.out.print(message);
