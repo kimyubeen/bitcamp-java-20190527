@@ -8,38 +8,16 @@ public class MemberHandler {
   static Member[] members = new Member[100];
   static int membersSize = 0;
   static Scanner keyScan;
-  
-  private static int getIntValue(String message) {
-    while (true) {
-      try {
-        System.out.print(message);
-        return Integer.parseInt(keyScan.nextLine());
-      } catch (NumberFormatException e) {
-        System.out.println("숫자를 입력하세요.");
-      }
-    }
-  }
-  
-  private static String getStringValue(String message) {
-    System.out.print(message);
-    return keyScan.nextLine();
-  }
-  
 
-  static String prompt() {
-    System.out.print("명령 > ");
-    return keyScan.nextLine();
-  }
-  
   static void addMember() {
     Member member = new Member();
     
-    member.no = getIntValue("번호?");
-    member.name = getStringValue("이름? ");
-    member.email = getStringValue("이메일? ");
-    member.password = getStringValue("암호? ");
-    member.photo = getStringValue("사진? ");
-    member.tel = getStringValue("전화? ");
+    member.no = Input.getIntValue("번호?");
+    member.name = Input.getStringValue("이름? ");
+    member.email = Input.getStringValue("이메일? ");
+    member.password = Input.getStringValue("암호? ");
+    member.photo = Input.getStringValue("사진? ");
+    member.tel = Input.getStringValue("전화? ");
     member.registerDate = new Date(System.currentTimeMillis());
     
     members[membersSize++] = member;

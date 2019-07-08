@@ -9,9 +9,9 @@ public class App {
   static Scanner keyScan;
   
   public static void main(String[] args) {
-    java.io.InputStream keyboard = System.in;
-    keyScan = new Scanner(keyboard);
+    keyScan = new Scanner(System.in);
     
+    Input.keyScan = keyScan;
     LessonHandler.keyScan = keyScan;
     MemberHandler.keyScan = keyScan;
     BoardHandler.keyScan = keyScan;
