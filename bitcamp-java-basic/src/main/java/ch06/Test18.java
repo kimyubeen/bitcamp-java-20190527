@@ -1,7 +1,7 @@
 // JVM 아규먼트 응용 II
 package ch06;
 
-import java.util.Set;
+import java.util.Properties;
 
 public class Test18 {
   public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class Test18 {
     //
     
     // JVM의 전체 프로퍼티 목록 가져오기
-    java.util.Properties props = System.getProperties();
+    Properties props = System.getProperties();
     
     java.util.Set keySet = props.keySet();
     

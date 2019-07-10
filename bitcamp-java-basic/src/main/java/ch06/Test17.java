@@ -5,6 +5,7 @@ public class Test17 {
   public static void main(String[] args) {
     // JVM 아규먼트로 학생의 이름과 국영수 점수를 입력 받아 총점과 평균을 출력하라
     // $ java -cp ./bin/main -Dname=홍길동 -Dkor=100 -Deng=100 -Dmath=90 ch06.Test17
+    // C:\Users\bit\git\bitcamp-java-20190527\bitcamp-java-basic>java -cp bin/main -Dname=yubeen -Dkor=100 -Deng=90 -Dmath=100 ch06.Test17
     // 이름: 홍길동
     // 총점: 290
     // 평균: 96.9

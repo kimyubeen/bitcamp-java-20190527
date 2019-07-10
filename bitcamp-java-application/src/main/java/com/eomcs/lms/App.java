@@ -56,7 +56,7 @@ public class App {
         
       } else if (command.equals("/board2/list")) {
         boardHandler2.listBoard();
-        
+          
       } else {
           System.out.println("해당 명령을 지원하지 않습니다.");
       }

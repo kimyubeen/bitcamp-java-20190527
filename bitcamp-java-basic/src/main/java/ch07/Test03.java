@@ -2,7 +2,7 @@
 package ch07;
 
 public class Test03 {
-  // 학생의 성적 데이터를 담을 새로 구조의 메모리를 정의한다.
+  // 학생의 성적 데이터를 담을 새로운 구조의 메모리를 정의한다.
   // 문법:
   //      class 새데이터타입이름 {
   //        변수 선언;
@@ -36,9 +36,13 @@ public class Test03 {
     s1 = new Score(); // Score 설계도에 따라 메모리(변수들)를 준비시킨다.
                       // 그리고 메모리의 주소를 레퍼런스에 저장한다.
     
-    Class c = Class.forName("ch07.Test03$Score");
+    Class c = Class.forName("ch07.Test03$Score"); 
+    // 클래스를 읽어서 정보를 만든다.
+    // $뒤에 있는 클래스가 앞에 있는 클래스에 들어있다는 의미(중첩클래스)
+    // 확장자명은 적지 않는다.
     Score s3 = (Score)c.newInstance();
-    
+    //문자열로 주어진 클래스를 찾아서 method area에 로딩, JVM은 클래스 정보를 메모리에 보관하고 있다. 
+    // newInstance() : 클래스 정보를 가지고 인스턴스를 만든다. return type : Object
     
     // 물론 다음과 같이 한 줄에 표현할 수도 있다.
     Score s2 = new Score();

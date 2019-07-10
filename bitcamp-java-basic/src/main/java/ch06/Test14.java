@@ -5,7 +5,7 @@ public class Test14 {
   public static void main(String[] args) {
     // 합계를 출력하는 프로그램을 작성하라.
     // $ java -cp ./bin/main ch06.Test14 200 43 56
-    //
+    // C:\Users\bit\git\bitcamp-java-20190527\bitcamp-java-basic>java -cp bin/main ch06.Test14 10 20 30
     int sum = 0;
     for (String arg : args)
       sum += Integer.parseInt(arg);

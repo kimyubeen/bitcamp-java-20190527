@@ -7,6 +7,7 @@ public class Test13 {
     for (String arg : args)
       System.out.println(arg);
     System.out.println("---------------");
+    
   }
   
 }
@@ -17,6 +18,7 @@ public class Test13 {
 - 어떻게 아규먼트를 넘기는가?
 
   $ java 클래스명 값1 값2 값3
+  C:\Users\bit\git\bitcamp-java-20190527\bitcamp-java-basic>java -classpath bin/main ch06.Test13 10 20 30
   
 - 아규먼트는 공백으로 구분한다.
 - JVM은 아규먼트의 개수만큼 문자열 배열을 만들어 저장한다.

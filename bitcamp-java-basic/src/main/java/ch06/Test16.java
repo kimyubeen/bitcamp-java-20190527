@@ -7,7 +7,7 @@ public class Test16 {
     // - JVM에게 전달하는 값
     // - 형식
     //   $java -cp ./bin/main -D이름=값 -D이름=값 -D이름=값 ch06.Test16
-    //
+    //   C:\Users\bit\git\bitcamp-java-20190527\bitcamp-java-basic>java -cp bin/main -Da=yubeen -Db=111 -Dc=222 ch06.Test16
     
     // JVM 아규먼트의 값 꺼내기
     // => System.getProperty("이름");
