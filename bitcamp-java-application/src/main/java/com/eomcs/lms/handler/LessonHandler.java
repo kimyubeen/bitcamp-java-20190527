@@ -5,7 +5,7 @@ import com.eomcs.lms.util.Input;
 
 public class LessonHandler {
   
-  private LessonList lessonList = new LessonList();
+  private LessonList lessonList = new LessonList(100);
   private Input input;
   
   public LessonHandler(Input input) {
