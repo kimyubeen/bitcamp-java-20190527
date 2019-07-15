@@ -14,6 +14,18 @@ public class Test10 {
     int i2 = obj1; // auto-unboxing. 즉 내부적으로 obj1.intValue()를 호출한다.
     Integer obj2 = 200; // auto-boxing. 즉 내부적으로 Integer.valueOf(200)을 호출한다.
     
+    printInt(obj2); // 컴파일러가 printInt(obj2.intValue())로 바꾼다.
+                    //즉 "오토 언박싱"을 수행한다.
+    printObject(obj1); // 컴파일러가 printObject(obj1.valueOf(100))으로 바꾼다.
+                       // 즉 "오토 박싱"을 수행한다.
+  }
+  
+  static void printInt(int value) {
+    System.out.println(value);
+  }
+  
+  static void printObject(Integer obj) {
+    System.out.println(obj);
   }
 }
 
