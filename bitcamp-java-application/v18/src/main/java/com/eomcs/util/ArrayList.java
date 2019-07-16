@@ -15,7 +15,7 @@ public class ArrayList<E> {
   public ArrayList(int initialCapacity) {
     if (initialCapacity < 50 || initialCapacity > 10000)
       list = new Object[DEFAULT_CAPACITY];
-    else
+    else 
       list = new Object[initialCapacity];
   }
 
@@ -44,7 +44,7 @@ public class ArrayList<E> {
     
     System.arraycopy(list, 0, a, 0, size); // System.arraycopy(src, srcPos, dest, destPos, length);
     if (a.length > size)
-      a[size] = null;
+      a[size] = null; // 끝을 표시
     return a;
   }
   
