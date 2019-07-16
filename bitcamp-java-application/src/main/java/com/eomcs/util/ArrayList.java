@@ -1,5 +1,7 @@
 package com.eomcs.util;
 
+import java.util.Arrays;
+
 public class ArrayList {
   private static final int DEFAULT_CAPACITY = 100;
   
@@ -17,17 +19,16 @@ public class ArrayList {
       list = new Object[initialCapacity];
   }
 
-  public void add(Object obj) {
-    if (this.size == list.length)
-        throw new RuntimeException("배열이 꽉 찼습니다.");
+  public void add(Object obj) { 
+    if (this.size == list.length) {
+      int oldCapacity = list.length;
+      int newCapacity = oldCapacity + (oldCapacity >> 1);
+      list = Arrays.copyOf(this.list, newCapacity);
+    }
     this.list[this.size++] = obj;
   }
   
   public Object[] toArray() {
-    Object[] arr = new Object[this.size];
-    for (int i = 0; i < this.size; i++) {
-      arr[i] = this.list[i];
-    }
-    return arr;
+    return Arrays.copyOf(this.list, this.size); //  Arrays.copyOf(original, int newLength)
   }
 }
