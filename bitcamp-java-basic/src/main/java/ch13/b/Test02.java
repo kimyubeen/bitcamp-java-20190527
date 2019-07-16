@@ -15,10 +15,12 @@ public class Test02 {
     s.setArt(100); // Score2의 메서드
     System.out.printf("%s: %d(%.1f)\n", s.getName(), s.getSum(), s.getAver());
     
+    System.out.println();
+    
     Score2 s2 = new Score2();
     s2.setName("임꺽정");
-    s2.setMusic(100); // Score의 compute2() 호출  => 5과목의 합계와 평균을 계산한다.
-    s2.setArt(100); // Score의 compute2() 호출  => 5과목의 합계와 평균을 계산한다.
+    s2.setMusic(100); // Score2의 compute2() 호출  => 5과목의 합계와 평균을 계산한다.
+    s2.setArt(100); // Score2의 compute2() 호출  => 5과목의 합계와 평균을 계산한다.
     s2.setKor(100); // Score의 compute() 호출  => 3과목의 합계와 평균을 계산한다.
     s2.setEng(100); // Score의 compute() 호출  => 3과목의 합계와 평균을 계산한다.
     s2.setMath(100); // Score의 compute() 호출  => 3과목의 합계와 평균을 계산한다.
