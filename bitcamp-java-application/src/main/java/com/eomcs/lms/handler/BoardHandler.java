@@ -17,9 +17,11 @@ public class BoardHandler {
   public BoardHandler(Input input) {
     this.input = input;
   }
-
+  
   public void addBoard() {
+    
     Board board = new Board();
+    
     
     board.setNo(input.getIntValue("번호? "));
     board.setContents(input.getStringValue("내용? "));
@@ -32,13 +34,13 @@ public class BoardHandler {
   }
   
   public void listBoard() {
-    // 1.
-    Board[] boards = boardList.toArray(new Board[] {});
+//    // 1.
+//    Board[] boards = boardList.toArray(new Board[] {});
     
-    /* 2.
+   //  2.
     Board[] boards = new Board[boardList.size()];
     boardList.toArray(boards);
-    */
+    
     
     for (Board board : boards) {
       System.out.printf("%d, %-20s , %-10s, %d\n", board.getNo(), board.getContents(),

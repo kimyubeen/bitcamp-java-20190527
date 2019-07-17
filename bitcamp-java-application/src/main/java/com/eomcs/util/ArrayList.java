@@ -1,7 +1,6 @@
 package com.eomcs.util;
 
 import java.util.Arrays;
-import javax.sound.midi.SysexMessage;
 
 public class ArrayList<E> {
   private static final int DEFAULT_CAPACITY = 100;
