@@ -35,7 +35,6 @@ public class Test11_2 {
     
     System.out.println(new boolean[10].getClass().getName()); //[Z
     
-    
   }
 }
 

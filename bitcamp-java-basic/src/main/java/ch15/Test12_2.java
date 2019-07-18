@@ -40,6 +40,7 @@ public class Test12_2 {
     //    public 으로 접근 범위를 넗혀라!
     // => 오버라이딩은 접근 범위를 좁힐 수는 없지만, 넓힐 수는 있다.
     // => 오버라이딩 할 때 리턴 타입을 클래스 타입으로 변경해도 된다.
+    
     @Override
     public Score clone() throws CloneNotSupportedException {
       // 복제를 위한 코드를 작성할 필요가 없다. JVM이 알아서 해준다. 

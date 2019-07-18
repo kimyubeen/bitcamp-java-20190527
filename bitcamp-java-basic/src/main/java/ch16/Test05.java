@@ -22,6 +22,11 @@ public class Test05 {
     // 생성할 배열의 타입 정보를 넘긴다.
     String[] strs3 = create3(String.class);
     System.out.println(strs3.length);
+    
+    String[] temp1 = new String[1];
+    String[] strs4 = create4(temp1);
+    System.out.println(strs4.length);
+    //System.out.println(strs4.length);
   }
   
   // 제네릭으로 배열 생성하기
@@ -49,7 +54,7 @@ public class Test05 {
   // 예4) 견본 배열의 타입 정보를 가지고 배열을 생성하기
   @SuppressWarnings("unchecked")
   static <T> T[] create4(T[] arr) {
-    return (T[]) Array.newInstance(arr.getClass(), 10);
+    return (T[]) Array.newInstance(arr.getClass().getComponentType(), 10);
   }
   
 }
