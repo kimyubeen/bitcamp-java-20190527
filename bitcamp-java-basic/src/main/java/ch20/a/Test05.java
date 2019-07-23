@@ -64,8 +64,8 @@ public class Test05 {
     System.out.println(s2.hashCode() == s4.hashCode());
     
     ArrayList<Student> list = new ArrayList<>();
-    list.add(s1);
     list.add(s2);
+    list.add(s1);
     list.add(s3);
     
     
@@ -77,6 +77,7 @@ public class Test05 {
     System.out.println(list.indexOf(s3));
     System.out.println(list.indexOf(s2));
     System.out.println(list.indexOf(s4)); // equals()의 리턴값이 true이면 1을 리턴한다.
+    System.out.println(list.indexOf(new Student("ccc", 40)));
     System.out.println(list.indexOf(new Student("ccc", 30))); // 못찾으면 -1 이다.
   }
 
