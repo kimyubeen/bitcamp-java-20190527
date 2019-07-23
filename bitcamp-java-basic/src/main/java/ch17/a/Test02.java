@@ -20,6 +20,10 @@ class My2 extends A {
   public void m3() {
     System.out.println("Hello!");
   }
+  
+  public void m1() {
+    System.out.println("aa");
+  }
 }
 
 // 추상 클래스 <==> 일반 클래스(concrete class)

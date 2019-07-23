@@ -24,7 +24,7 @@ public class Test01 {
     ArrayList<Object> list2 = new ArrayList<>();
     list2.add("Hello");
     list2.add(Integer.valueOf(100));
-    list2.add(100);
+    list2.add(100); // 오토박싱
     list2.add(new Date());
 
   }
