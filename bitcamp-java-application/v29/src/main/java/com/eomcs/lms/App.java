@@ -221,7 +221,7 @@ public class App {
       // FileOutputStream은 바이트 또는 바이트 배열을 출력할 수 있다.
       // 따라서 어떤 값을 출력하려면 바이트 배열로 만들어야 한다.
       // 자바는 이것을 도와주는 DataOutputStream이라는 클래스를 제공하고 있다.
-      // 이 클래스를 DataOutputStream에 붙여서 사용하라!
+      // 이 클래스를 FileOutputStream에 붙여서 사용하라!
       out2 = new DataOutputStream(out);
       
       // 본격적으로 데이터를 출력하기 전에 몇개의 데이터를 출력할 것인지 먼저 그 개수를 출력한다.
@@ -313,7 +313,7 @@ public class App {
       // FileOutputStream은 바이트 또는 바이트 배열을 출력할 수 있다.
       // 따라서 어떤 값을 출력하려면 바이트 배열로 만들어야 한다.
       // 자바는 이것을 도와주는 DataOutputStream이라는 클래스를 제공하고 있다.
-      // 이 클래스를 DataOutputStream에 붙여서 사용하라!
+      // 이 클래스를 FileOutputStream에 붙여서 사용하라!
       out2 = new DataOutputStream(out);
       
       // 본격적으로 데이터를 출력하기 전에 몇개의 데이터를 출력할 것인지 먼저 그 개수를 출력한다.
@@ -403,7 +403,7 @@ public class App {
       // FileOutputStream은 바이트 또는 바이트 배열을 출력할 수 있다.
       // 따라서 어떤 값을 출력하려면 바이트 배열로 만들어야 한다.
       // 자바는 이것을 도와주는 DataOutputStream이라는 클래스를 제공하고 있다.
-      // 이 클래스를 DataOutputStream에 붙여서 사용하라!
+      // 이 클래스를 FileOutputStream에 붙여서 사용하라!
       out2 = new DataOutputStream(out);
       
       // 본격적으로 데이터를 출력하기 전에 몇개의 데이터를 출력할 것인지 먼저 그 개수를 출력한다.
