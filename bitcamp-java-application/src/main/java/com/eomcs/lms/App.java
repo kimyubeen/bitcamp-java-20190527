@@ -284,7 +284,7 @@ public class App {
         member.setRegisterDate(Date.valueOf(in2.readUTF()));
         
         memberList.add(member);
-        
+         
       }
     } catch (FileNotFoundException e) {
       System.out.println("읽을 파일을 찾을 수 없습니다!");
