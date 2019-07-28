@@ -12,7 +12,7 @@ public class Test14 {
     //
     File dir = new File("bin/main");
     
-    findClass2(dir, "");
+    findClass(dir, "");
     System.out.println("완료!");
   }
   

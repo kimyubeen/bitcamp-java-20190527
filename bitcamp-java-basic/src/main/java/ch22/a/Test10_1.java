@@ -10,7 +10,7 @@ public class Test10_1 {
   static class TextFileFilter implements FilenameFilter {
     @Override
     public boolean accept(File dir, String name) {
-      return name.endsWith(".txt"); // 디렉토리도 같이 나오는 문제가 있다.
+      return name.endsWith(".txt"); // 디렉터리도 같이 나온다
     }
   }
   
