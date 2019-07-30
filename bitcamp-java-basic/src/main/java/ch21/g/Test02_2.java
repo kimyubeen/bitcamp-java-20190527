@@ -18,5 +18,7 @@ public class Test02_2 {
       // 아니면 호출자에게 전달할 것인지 결정해야 한다.
     }
     
+    System.out.println("종료!");
+    
   }
 }

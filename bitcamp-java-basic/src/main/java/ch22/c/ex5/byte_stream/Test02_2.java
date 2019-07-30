@@ -1,6 +1,8 @@
 // DataOutputStream + 버퍼 기능 = DataOutputStream2
-package ch22.c.ex4;
+package ch22.c.ex5.byte_stream;
 
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
 import java.io.FileInputStream;
 
 public class Test02_2 {
@@ -13,7 +15,7 @@ public class Test02_2 {
     BufferedInputStream other2 = new BufferedInputStream(other);
     
     // 위 데코레이터 객체에 primitive 타입의 값을 읽는 데코레이터를 붙인다.
-    DataInputstream in = new DataInputstream(other2);
+    DataInputStream in = new DataInputStream(other2);
 
     System.out.println("읽기 시작...");
     long start = System.currentTimeMillis();

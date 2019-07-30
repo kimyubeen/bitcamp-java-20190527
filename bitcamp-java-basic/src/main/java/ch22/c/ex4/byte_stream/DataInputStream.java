@@ -1,12 +1,12 @@
-package ch22.c.ex4;
+package ch22.c.ex4.byte_stream;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class DataInputstream extends DecoratorInputStream {
+public class DataInputStream extends DecoratorInputStream {
 
-  public DataInputstream(InputStream other) throws FileNotFoundException {
+  public DataInputStream(InputStream other) throws FileNotFoundException {
     super(other);
   }
   
