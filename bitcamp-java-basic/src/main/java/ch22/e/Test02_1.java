@@ -1,11 +1,8 @@
 // 인스턴스 출력하기 - 배열 활용
 package ch22.e;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 public class Test02_1 {
