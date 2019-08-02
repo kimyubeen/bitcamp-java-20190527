@@ -91,6 +91,11 @@ public class ServerTest {
         error();
       }
     
+    } catch (RequestException e) {
+      // 서버에서 요청 처리에 실패했다면 
+      // 서버가 보낸 이유를 받는다.
+      System.out.printf("오류: %s\n", in.readUTF());
+      
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -176,7 +181,7 @@ public class ServerTest {
     return true;
   }
 
-  private static boolean add(Member m) throws Exception{
+  private static boolean add(Member m) throws IOException, RequestException {
     out.writeUTF("/member/add");
     out.writeObject(m);
     out.flush();
