@@ -10,15 +10,16 @@ public class Member implements Serializable {
   private String name;
   private String email;
   private String password;
-  private String tel;
   private String photo;
-  private Date registeredDate;
+  private String tel;
+  private Date registerdDate;
   
   @Override
   public String toString() {
     return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
-        + ", tel=" + tel + ", photo=" + photo + ", registeredDate=" + registeredDate + "]";
+        + ", photo=" + photo + ", tel=" + tel + ", registerdDate=" + registerdDate + "]";
   }
+  
   public int getNo() {
     return no;
   }
@@ -43,23 +44,25 @@ public class Member implements Serializable {
   public void setPassword(String password) {
     this.password = password;
   }
-  public String getTel() {
-    return tel;
-  }
-  public void setTel(String tel) {
-    this.tel = tel;
-  }
   public String getPhoto() {
     return photo;
   }
   public void setPhoto(String photo) {
     this.photo = photo;
   }
-  public Date getRegisteredDate() {
-    return registeredDate;
+  public String getTel() {
+    return tel;
   }
-  public void setRegisteredDate(Date registeredDate) {
-    this.registeredDate = registeredDate;
+  public void setTel(String tel) {
+    this.tel = tel;
+  }
+  public Date getRegisterdDate() {
+    return registerdDate;
+  }
+  public void setRegisterdDate(Date registerdDate) {
+    this.registerdDate = registerdDate;
   }
   
+  
 }
+

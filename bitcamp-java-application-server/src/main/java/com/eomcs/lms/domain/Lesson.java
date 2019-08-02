@@ -6,7 +6,8 @@ import java.sql.Date;
 // 수업 데이터를 저장할 설계도를 작성한다.
 public class Lesson implements Serializable {
   private static final long serialVersionUID = 1L;
-  
+  // 수업 데이터를 저장할 메모리는 지정한다.
+  // => new 명령을 실행해야만 아래의 변수들이 준비된다.
   private int no;
   private String title;
   private String contents;
@@ -21,6 +22,7 @@ public class Lesson implements Serializable {
         + startDate + ", endDate=" + endDate + ", totalHours=" + totalHours + ", dayHours="
         + dayHours + "]";
   }
+  
   public int getNo() {
     return no;
   }
@@ -63,13 +65,6 @@ public class Lesson implements Serializable {
   public void setDayHours(int dayHours) {
     this.dayHours = dayHours;
   }
-  
-  
+
+
 }
-
-
-
-
-
-
-

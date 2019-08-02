@@ -8,7 +8,7 @@ import java.util.List;
 import com.eomcs.lms.domain.Member;
 
 public class ServerTest {
-
+  
   static ObjectOutputStream out;
   static ObjectInputStream in;
   
@@ -16,14 +16,12 @@ public class ServerTest {
     System.out.println("[수업관리시스템 서버 애플리케이션 테스트]");
 
     try (Socket socket = new Socket("localhost", 8888);
-        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-        ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
+        ObjectOutputStream out = new ObjectOutputStream(
+            socket.getOutputStream()); 
+        ObjectInputStream in = new ObjectInputStream(
+            socket.getInputStream())) {
       
       System.out.println("서버와 연결되었음.");
-      
-      // 다른 메서드가 입출력 객체를 사용할 수 있도록 스태틱 변수에 저장한다.
-      ServerTest.in = in;
-      ServerTest.out = out;
       
       Member member = new Member();
       member.setNo(1);
@@ -31,11 +29,8 @@ public class ServerTest {
       member.setEmail("hong@test.com");
       member.setPhoto("hong.gif");
       member.setTel("1111-1111");
-
-      if (!add(member)) {
-        error();
-      }
-      System.out.println("------------------");
+      
+      addMember(member);
       
       member = new Member();
       member.setNo(2);
@@ -43,54 +38,21 @@ public class ServerTest {
       member.setEmail("leem@test.com");
       member.setPhoto("leem.gif");
       member.setTel("1111-2222");
-
-      if (!add(member)) {
-        error();
-      }
-      System.out.println("------------------");
       
-      if (!list()) {
-        error();
-      }
-      System.out.println("------------------");
+      addMember(member);
       
-      if (!delete()) {
-        error();
-      }
-      System.out.println("------------------");
+      listMember();
       
-      if (!list()) {
-        error();
-      }
-      System.out.println("------------------");
+      deleteMember();
       
-      if (!detail()) {
-        error();
-      }
-      System.out.println("------------------");
+      out.writeUTF("quit");
+      out.flush();
+      System.out.println("quit 요청함.");
       
-      member = new Member();
-      member.setNo(1);
-      member.setName("홍길동2");
-      member.setEmail("hong2@test.com");
-      member.setPhoto("hong.gif");
-      member.setTel("1111-1111");
+      // 서버가 보낸 데이터를 읽는다.
+      String response = in.readUTF();
+      System.out.println("==>" + response);
       
-      if (!update(member)) {
-        error();
-      }
-      System.out.println("------------------");
-      
-      if (!list()) {
-        error();
-      }
-      
-      System.out.println("------------------");
-      
-      if (!quit()) {
-        error();
-      }
-    
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -98,100 +60,50 @@ public class ServerTest {
     System.out.println("서버와 연결 끊음.");
   }
 
-  
-
-  private static void error() throws Exception {
-    System.out.printf("오류: %s\n", in.readUTF());
+  private static void deleteMember() throws IOException, ClassNotFoundException {
+    // 서버가 처리할 수 없는 명령어 보내기
+    out.writeUTF("delete");
+    out.flush();
+    System.out.println("delete 요청함.");
+    
+    // 서버가 보낸 데이터를 읽는다.
+    String response = in.readUTF();
+    System.out.println("==>" + response);
+    
+    response = in.readUTF();
+    System.out.println("==>" + response);
+    
   }
 
-  private static boolean quit() throws Exception {
-    out.writeUTF("quit");
+  private static void listMember() throws IOException, ClassNotFoundException {
+    out.writeUTF("list");
     out.flush();
-    System.out.print("quit 요청함 => ");
+    System.out.println("list 요청함.");
     
-    if (!in.readUTF().equals("ok"))
-      return false;
-    
-    System.out.println("처리 완료!");
-    return true;
-  }
-
-  private static boolean delete() throws Exception {
-    out.writeUTF("/member/delete");
-    out.writeInt(2);
-    out.flush();
-    System.out.print("delete 요청함 => ");
-    
-    if (!in.readUTF().equals("ok"))
-      return false;
-    
-    System.out.println("처리 완료!");
-    return true;
-  }
-  
-  private static boolean detail() throws Exception {
-    out.writeUTF("/member/detail");
-    out.writeInt(1);
-    out.flush();
-    System.out.print("detail 요청함 => ");
-    
-    if (!in.readUTF().equals("ok"))
-      return false;
-    
-    System.out.println("처리 완료!");
-    System.out.println(in.readObject());
-    
-    return true;
-  }
-
-  private static boolean update(Member m) throws Exception {
-    out.writeUTF("/member/update");
-    out.writeObject(m);
-    out.flush();
-    System.out.print("update 요청함 => ");
-    
-    if (!in.readUTF().equals("ok"))
-      return false;
-    
-    System.out.println("처리 완료!");
-    return true;
-  }
-  
-  private static boolean list() throws Exception {
-    out.writeUTF("/member/list");
-    out.flush();
-    System.out.print("list 요청함 => ");
-    
-    if (!in.readUTF().equals("ok"))
-      return false;
-    
-    System.out.println("처리 완료!");
+    // 서버가 보낸 데이터를 읽는다.
+    String response = in.readUTF();
+    System.out.println("==>" + response);
     
     @SuppressWarnings("unchecked")
-    List<Member> list = (List<Member>)in.readObject();
-    System.out.println("------------------");
+    List<Member> list = (List<Member>) in.readObject();
+    System.out.println("-----------------------");
     for (Member m : list) {
       System.out.println(m);
     }
-    return true;
+    System.out.println("-----------------------");
+    
   }
 
-  private static boolean add(Member m) throws Exception{
-    out.writeUTF("/member/add");
-    out.writeObject(m);
+  private static void addMember(Member member) throws IOException {
+    out.writeUTF("add");
+    out.writeObject(member);
     out.flush();
-    System.out.print("add 요청함 => ");
+    System.out.println("add 요청함.");
     
-    if (!in.readUTF().equals("ok"))
-      return false;
+    // 서버가 보낸 데이터를 읽는다.
+    String response = in.readUTF();
+    System.out.println("==>" + response);
     
-    System.out.println("처리 완료!");
-    return true;
   }
 }
-
-
-
-
-
 

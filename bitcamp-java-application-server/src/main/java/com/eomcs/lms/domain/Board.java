@@ -8,14 +8,15 @@ public class Board implements Serializable {
   
   private int no;
   private String contents;
-  private Date createdDate;
+  private Date createDate;
   private int viewCount;
   
   @Override
   public String toString() {
-    return "Board [no=" + no + ", contents=" + contents + ", createdDate=" + createdDate
+    return "Board [no=" + no + ", contents=" + contents + ", createDate=" + createDate
         + ", viewCount=" + viewCount + "]";
   }
+  
   public int getNo() {
     return no;
   }
@@ -28,11 +29,11 @@ public class Board implements Serializable {
   public void setContents(String contents) {
     this.contents = contents;
   }
-  public Date getCreatedDate() {
-    return createdDate;
+  public Date getCreateDate() {
+    return createDate;
   }
-  public void setCreatedDate(Date createdDate) {
-    this.createdDate = createdDate;
+  public void setCreateDate(Date createDate) {
+    this.createDate = createDate;
   }
   public int getViewCount() {
     return viewCount;
@@ -40,5 +41,6 @@ public class Board implements Serializable {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
+
   
 }
