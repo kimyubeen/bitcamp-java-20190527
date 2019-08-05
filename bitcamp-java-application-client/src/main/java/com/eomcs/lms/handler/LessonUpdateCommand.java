@@ -44,8 +44,10 @@ public class LessonUpdateCommand implements Command {
       lesson.setTotalHours(input.getIntValue("총수업시간(" + lesson.getTotalHours() + ")? "));
 
       lesson.setDayHours(input.getIntValue("일수업시간(" + lesson.getDayHours() + ")? "));
-
+      
+      lessonDao.update(lesson);
       System.out.println("데이터를 변경했습니다.");
+      
     } catch (Exception e) {
       System.out.println("데이터 변경에 실패했습니다.");
       System.out.println(e.getMessage());
