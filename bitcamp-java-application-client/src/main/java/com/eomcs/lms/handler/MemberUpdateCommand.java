@@ -46,6 +46,7 @@ public class MemberUpdateCommand implements Command {
       if (str.length() > 0)
         member.setTel(str);
 
+      memberDao.update(member);
       System.out.println("회원을 변경했습니다.");
     } catch (Exception e) {
       System.out.println("데이터 변경에 실패했습니다.");
