@@ -3,12 +3,12 @@ package com.eomcs.lms.servlet;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import com.eomcs.lms.Servlet;
-import com.eomcs.lms.dao.csv.LessonCsvDao;
+import com.eomcs.lms.dao.serial.LessonSerialDao;
 import com.eomcs.lms.domain.Lesson;
 
 public class LessonServlet implements Servlet {
   
-  LessonCsvDao lessonDao;
+  LessonSerialDao lessonDao;
 
   ObjectInputStream in;
   ObjectOutputStream out;
@@ -17,7 +17,7 @@ public class LessonServlet implements Servlet {
     this.in = in;
     this.out = out;
     
-    lessonDao = new LessonCsvDao("./lesson.csv");
+    lessonDao = new LessonSerialDao("./lesson.ser");
   }
   
   public void saveData() {

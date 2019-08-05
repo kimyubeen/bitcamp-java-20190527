@@ -4,13 +4,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
 import com.eomcs.lms.Servlet;
-import com.eomcs.lms.dao.csv.BoardCsvDao;
+import com.eomcs.lms.dao.serial.BoardSerialDao;
 import com.eomcs.lms.domain.Board;
 
 // 게시물 요청을 처리하는 담당자
 public class BoardServlet implements Servlet {
 
-  BoardCsvDao boardDao;
+  BoardSerialDao boardDao;
   
   ObjectInputStream in;
   ObjectOutputStream out;
@@ -19,7 +19,7 @@ public class BoardServlet implements Servlet {
     this.in = in;
     this.out = out;
     
-    boardDao = new BoardCsvDao("./board.csv");
+    boardDao = new BoardSerialDao("./board.ser");
   }
   
   public void saveData() {

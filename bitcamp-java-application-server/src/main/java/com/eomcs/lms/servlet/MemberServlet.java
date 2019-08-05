@@ -4,12 +4,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
 import com.eomcs.lms.Servlet;
-import com.eomcs.lms.dao.csv.MemberCsvDao;
+import com.eomcs.lms.dao.serial.MemberSerialDao;
 import com.eomcs.lms.domain.Member;
 
 public class MemberServlet implements Servlet {
  
-  MemberCsvDao memberDao;
+  MemberSerialDao memberDao;
 
   ObjectInputStream in;
   ObjectOutputStream out;
@@ -18,7 +18,7 @@ public class MemberServlet implements Servlet {
     this.in = in;
     this.out = out;
     
-    memberDao = new MemberCsvDao("./member.csv");
+    memberDao = new MemberSerialDao("./member.ser");
   }
   
   public void saveData() {
