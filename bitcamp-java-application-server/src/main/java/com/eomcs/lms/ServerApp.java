@@ -66,8 +66,6 @@ public class ServerApp {
             lessonServlet.service(command);
             
           } else if (command.equals("quit")) {
-            out.writeUTF("ok");
-            out.flush();
             break;
             
           } else {
@@ -78,7 +76,6 @@ public class ServerApp {
           out.flush();
           System.out.println("클라이언트에게 응답 완료!");
         }
-        
         
       }
       
