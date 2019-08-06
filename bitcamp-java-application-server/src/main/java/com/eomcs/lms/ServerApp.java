@@ -1,4 +1,4 @@
-// v33_3: Stateful 통신 방식을 Stateless 통신 방식으로 변경하여 더 많은 클라이언트 요청 처리
+// v33_2: Stateful 통신 방식을 Stateless 통신 방식으로 변경하여 더 많은 클라이언트 요청 처리
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
