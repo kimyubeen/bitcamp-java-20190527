@@ -10,9 +10,9 @@ public class Member implements Serializable {
   private String name;
   private String email;
   private String password;
-  private String photo;
   private String tel;
-  private Date registerDate;
+  private String photo;
+  private Date registeredDate;
   
   public int getNo() {
     return no;
@@ -38,25 +38,23 @@ public class Member implements Serializable {
   public void setPassword(String password) {
     this.password = password;
   }
-  public String getPhoto() {
-    return photo;
-  }
-  public void setPhoto(String photo) {
-    this.photo = photo;
-  }
   public String getTel() {
     return tel;
   }
   public void setTel(String tel) {
     this.tel = tel;
   }
-  public Date getRegisterDate() {
-    return registerDate;
+  public String getPhoto() {
+    return photo;
   }
-  public void setRegisterDate(Date registerDate) {
-    this.registerDate = registerDate;
+  public void setPhoto(String photo) {
+    this.photo = photo;
   }
-  
+  public Date getRegisteredDate() {
+    return registeredDate;
+  }
+  public void setRegisteredDate(Date registeredDate) {
+    this.registeredDate = registeredDate;
+  }
   
 }
-

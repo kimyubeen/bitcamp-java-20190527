@@ -6,6 +6,7 @@ import com.eomcs.lms.domain.Board;
 import com.eomcs.util.Input;
 
 public class BoardAddCommand implements Command {
+  
   private BoardDao boardDao;
   private Input input;
   
@@ -13,24 +14,22 @@ public class BoardAddCommand implements Command {
     this.input = input;
     this.boardDao = boardDao;
   }
-  
+
   @Override
   public void execute() {
-    
     Board board = new Board();
     
     board.setNo(input.getIntValue("번호? "));
     board.setContents(input.getStringValue("내용? "));
-    board.setCreateDate(new Date(System.currentTimeMillis()));
-    board.setViewCount(0);
+    board.setCreatedDate(new Date(System.currentTimeMillis())); 
     
     try {
-    boardDao.insert(board);
-    System.out.println("저장하였습니다.");
+      boardDao.insert(board);
+      System.out.println("저장하였습니다.");
     } catch (Exception e) {
       System.out.println("데이터 저장에 실패했습니다!");
       System.out.println(e.getMessage());
     }
   }
-  
+
 }
