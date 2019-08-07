@@ -15,14 +15,12 @@ import com.eomcs.lms.servlet.Servlet;
 
 public class ServerApp {
 
-  public static boolean isStopping = false;
-
   ArrayList<ServletContextListener> listeners = new ArrayList<>();
   int port;
 
   //서버가 실행되는 동안 공유할 객체를 보관하는 저장소를 준비한다.
   HashMap<String,Object> servletContext = new HashMap<>();
-  
+
   // 스레드풀
   ExecutorService executorService = Executors.newCachedThreadPool();
 
@@ -45,32 +43,18 @@ public class ServerApp {
         System.out.println("클라이언트 요청을 기다리는 중...");
 
         Socket socket = serverSocket.accept();
-        
+
         // 스레드풀을 사용할 때는 직접 스레드를 만들지 않는다.
         // 단지 스레드풀에게 "스레드가 실행할 코드(Runnable 구현체)"를 제출한다.
         // => 스레드풀은 남아있는 스레드가 없으면 새로 만들어 해당 코드(RequestHandler)를 실행할 것이다.
         // => 남아있는 코드가 있다면 그 스레드를 이용하여 해당 코드(RequestHandler)를 실행할 것이다.
         executorService.submit(new RequestHandler(socket));
-        
-        if (isStopping)
-          break;
-      } // while
 
-      // 서버가 종료될 때 관찰자(observer)에게 보고한다.
-      for (ServletContextListener listener : listeners) {
-        listener.contextDestroyed(servletContext);
-      }
+      } // while
 
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
-    // 스레드풀에게 동작을 멈추라고 알려준다. 그리고 즉시 리턴한다.
-    // => 그러면 스레드풀은 작업중인 모든 스레드가 작업이 완료될 때까지 기다렸다가
-    //    스레드풀에 작업을 종료한다.
-    executorService.shutdown();
-    
-    System.out.println("서버 종료!");
 
   }
 
@@ -93,6 +77,24 @@ public class ServerApp {
     }
     // => 명령(/files/list) : 키(?)
     return null;
+  }
+
+  // serverstop 명령 처리
+  private void stop() {
+
+    // 서버가 종료될 때 관찰자(observer)에게 보고한다.
+    for (ServletContextListener listener : listeners) {
+      listener.contextDestroyed(servletContext);
+    }
+
+    // 스레드풀에게 동작을 멈추라고 알려준다. 그리고 즉시 리턴한다.
+    // => 그러면 스레드풀은 작업중인 모든 스레드가 작업이 완료될 때까지 기다렸다가
+    //    스레드풀에 작업을 종료한다.
+    executorService.shutdown();
+    
+    System.out.println("서버 종료!");
+
+    System.exit(0); // 단점! 현재 실행 중인 스레드까지 강제 종료시킨다.
   }
 
   // Thread를 상속 받아 직접 스레드 역할을 하는 대신에
@@ -127,7 +129,7 @@ public class ServerApp {
         Servlet servlet = null;
 
         if (command.equals("serverstop")) {
-          isStopping = true;
+          stop();
           return;
 
         } else if ((servlet = findServlet(command)) != null) {
