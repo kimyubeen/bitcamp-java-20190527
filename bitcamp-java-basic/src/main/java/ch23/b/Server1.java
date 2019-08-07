@@ -42,7 +42,7 @@ public class Server1 {
         System.out.print("데이터를 읽기 전에 잠깐!");
         keyboard.nextLine(); // 사용자가 콘솔창에서 엔터를 칠 때까지 리턴하지 않는다.
         
-        // => 클라이언트가 1바이트를 때까지 리턴하지 않는다.
+        // => 클라이언트가 1바이트를 보낼떄까지 리턴하지 않는다.
         int request = in.read(); // blocking 모드로 작동한다.
         System.out.println(request);
 
@@ -53,7 +53,7 @@ public class Server1 {
         
         // => 클라이언트에게 받은 문자열을 그대로 보낸다.
         //    물론 클라이언트가 보낸 데이터를 다 읽을 때까지 리턴하지 않는다.
-        out.write(100 / 3);
+        out.write(request);
         System.out.println("클라인트에게 데이터를 보냈음.");
         
       }

@@ -10,7 +10,7 @@ public class CalculatorProcessor {
   BufferedReader in;
   PrintStream out;
   
-  public CalculatorProcessor(Socket socket) throws Exception {
+  public CalculatorProcessor(Socket socket) throws Exception { 
     this.socket = socket;
     this.in = new BufferedReader(
         new InputStreamReader(socket.getInputStream()));
