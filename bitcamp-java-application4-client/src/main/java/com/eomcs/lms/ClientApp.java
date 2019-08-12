@@ -18,13 +18,19 @@ public class ClientApp {
   private void service() {
 
     keyboard = new Scanner(System.in);
+    
+    System.out.print("서버? ");
+    String host = keyboard.nextLine();
+    
+    System.out.print("포트? ");
+    int port = Integer.parseInt(keyboard.nextLine());
 
     Deque<String> commandStack = new ArrayDeque<>();
     Queue<String> commandQueue = new LinkedList<>();
 
     System.out.println("애플리케이션 서버에 연결 중...");
     // 애플리케이션 서버에 연결한다.
-    try (Socket socket = new Socket("localhost", 8888);
+    try (Socket socket = new Socket(host, port);
         PrintStream out = new PrintStream(socket.getOutputStream());
         BufferedReader in = new BufferedReader(
             new InputStreamReader(socket.getInputStream()))) {
@@ -41,9 +47,9 @@ public class ClientApp {
         commandStack.push(command);
         commandQueue.offer(command);
 
-        if (command.equals("quit")) {
-          // 서버에 quit 명령어를 보내고 종료한다.
-          send("quit", out);
+        if (command.equals("quit") || command.equals("serverstop")) {
+          // 서버에 quit 또는 serverstop 명령어를 보내고 종료한다.
+          send(command, out);
           break;
 
         } else if (command.equals("history")) {
@@ -62,7 +68,7 @@ public class ClientApp {
 
         }
 
-        System.out.println();
+        System.out.println("애플리케이션 서버와 연결 끊음!");
       } // while
 
     } catch (Exception e) {
