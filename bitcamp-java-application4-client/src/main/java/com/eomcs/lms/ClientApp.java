@@ -68,8 +68,9 @@ public class ClientApp {
 
         }
 
-        System.out.println("애플리케이션 서버와 연결 끊음!");
       } // while
+      
+      System.out.println("애플리케이션 서버와 연결 끊음!");
 
     } catch (Exception e) {
       System.out.println("애플리케이션 서버와 통신 오류!");
