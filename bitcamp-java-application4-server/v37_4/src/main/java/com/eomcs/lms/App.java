@@ -1,4 +1,4 @@
-// client-v37_4 : Stateful 통신 방식을 Stateless 통신 방식으로 변경하기
+// v37_4 : Stateful 통신 방식을 Stateless 통신 방식으로 변경하기
 package com.eomcs.lms;
 
 import java.io.BufferedReader;

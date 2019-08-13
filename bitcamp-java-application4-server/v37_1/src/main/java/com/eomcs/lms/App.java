@@ -1,4 +1,4 @@
-// client-v37_1 : '규칙1' 프로토콜에 따라 클라이언트 요청을 처리한다.
+// v37_1 : '규칙1' 프로토콜에 따라 클라이언트 요청을 처리한다.
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
