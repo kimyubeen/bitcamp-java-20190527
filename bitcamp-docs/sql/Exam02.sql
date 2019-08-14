@@ -57,7 +57,7 @@ create table test2 (
   math int
 );
 insert into test2(name,tel)
-  select name, tel from test1 where addr='seoul'; 
+  select name, tel from test1 where addr='seoul';
 ```
 
 ## update 

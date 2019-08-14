@@ -227,6 +227,8 @@ DBMS 중에는 고정 크기인 컬럼의 값을 비교할 때 빈자리까지 �
 > insert into test1(c3) values('T'); /* error */
 > insert into test1(c3) values('F'); /* error */
 
+> insert into test1(c3) values(true);
+> insert into test1(c3) values(false);
 > insert into test1(c3) values('1'); /* true */
 > insert into test1(c3) values('0'); /* false */
 > insert into test1(c3) values(1); /* true */
@@ -420,7 +422,7 @@ alter table test1
   add fulltext index test1_name_idx (name);
 ```
 
-- 컬럼에 옵션 추가
+- 컬럼에 옵션 추가(주의! 데이터타입을 생략해서는 안된다.)
 ```
 alter table test1
   modify column name varchar(20) not null,
