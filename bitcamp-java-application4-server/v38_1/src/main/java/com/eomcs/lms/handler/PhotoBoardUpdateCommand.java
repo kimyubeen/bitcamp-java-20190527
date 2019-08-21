@@ -39,7 +39,6 @@ public class PhotoBoardUpdateCommand implements Command {
       out.println("데이터 변경에 실패했습니다.");
       System.out.println(e.getMessage());
     }
-
   }
 
 }

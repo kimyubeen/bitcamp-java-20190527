@@ -39,5 +39,6 @@ public class PhotoBoardDetailCommand implements Command {
       System.out.println(e.getMessage());
     }
   }
+ 
 
 }

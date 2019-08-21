@@ -29,5 +29,6 @@ public class PhotoBoardListCommand implements Command {
       System.out.println(e.getMessage());
     }
   }
+ 
 
 }
