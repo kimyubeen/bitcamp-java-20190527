@@ -8,21 +8,21 @@ import com.eomcs.util.Input;
 
 public class PhotoBoardAddCommand implements Command {
   
-  private PhotoBoardDao PhotoBoardDao;
+  private PhotoBoardDao photoBoardDao;
   
-  public PhotoBoardAddCommand(PhotoBoardDao PhotoBoardDao) {
-    this.PhotoBoardDao = PhotoBoardDao;
+  public PhotoBoardAddCommand(PhotoBoardDao photoBoardDao) {
+    this.photoBoardDao = photoBoardDao;
   }
 
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     
     try {
-      PhotoBoard PhotoBoard = new PhotoBoard();
-      PhotoBoard.setTitle(Input.getStringValue(in, out, "제목? "));
-      PhotoBoard.setLessonNo(Input.getIntValue(in, out, "수업? "));
+      PhotoBoard photoBoard = new PhotoBoard();
+      photoBoard.setTitle(Input.getStringValue(in, out, "제목? "));
+      photoBoard.setLessonNo(Input.getIntValue(in, out, "수업? "));
       
-      PhotoBoardDao.insert(PhotoBoard);
+      photoBoardDao.insert(photoBoard);
       out.println("사진을 저장했습니다.");
       
     } catch (Exception e) {

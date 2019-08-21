@@ -20,13 +20,30 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
   public int insert(PhotoBoard photoBoard) throws Exception {
     try (Statement stmt = con.createStatement()) {
 
-      return stmt.executeUpdate(
+      // insert 한 후에 자동 생성된 PK 값을 리턴 받고 싶다면
+      // 두 번째 파라미터에 상수를 지정해야 한다.
+      int count = stmt.executeUpdate(
           "insert into lms_photo(lesson_id,titl)"
               + " values(" + photoBoard.getLessonNo()
-              + ",'"+ photoBoard.getTitle() + "')");
+              + ",'"+ photoBoard.getTitle() + "')",
+              Statement.RETURN_GENERATED_KEYS);
 
+      // insert 한 후 자동 생성된 PK 값을 꺼내려면
+      // 다음 메서드를 호출하여 ResultSet을 얻어야 한다.
+      try (ResultSet rs = stmt.getGeneratedKeys();) {
+
+        // ResultSet을 통해 자동 생성된 값을 꺼내라
+        if (rs.next()) {
+          int autoIncrementPK= rs.getInt(1);
+
+          // 호출자에게 리턴하는 방법!
+          // 파라미터로 받은 PhotoBoard 객체에 꺼꾸로 저장하라!
+          photoBoard.setNo(autoIncrementPK);
+        }
+      }
+      
+      return count;
     }
-
   }
 
   @Override
@@ -104,35 +121,35 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
     try (Connection con = DriverManager.getConnection(
         "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");) {
 
-//      PhotoBoardDao dao = new PhotoBoardDaoImpl(con);
+      //      PhotoBoardDao dao = new PhotoBoardDaoImpl(con);
 
       // 1) insert() 테스트
-//      PhotoBoard b = new PhotoBoard();
-//      b.setLessonNo(101);
-//      b.setTitle("사진 게시글 테스트2");
-//      
-//      dao.insert(b);
+      //      PhotoBoard b = new PhotoBoard();
+      //      b.setLessonNo(101);
+      //      b.setTitle("사진 게시글 테스트2");
+      //      
+      //      dao.insert(b);
 
-//       2) findAll() 테스트
-//      List<PhotoBoard> list = dao.findAll();
-//      for (PhotoBoard b : list) {
-//        System.out.println(b);
-//      }
+      //       2) findAll() 테스트
+      //      List<PhotoBoard> list = dao.findAll();
+      //      for (PhotoBoard b : list) {
+      //        System.out.println(b);
+      //      }
 
       // 3) findBy() 테스트
-//      PhotoBoard b = dao.findBy(10);
-//      System.out.println(b);
-      
+      //      PhotoBoard b = dao.findBy(10);
+      //      System.out.println(b);
+
       // 4) update() 테스트
-//      PhotoBoard b = new PhotoBoard();
-//      b.setNo(10);
-//      b.setTitle("제목 변경");
-//      dao.update(b);
-      
+      //      PhotoBoard b = new PhotoBoard();
+      //      b.setNo(10);
+      //      b.setTitle("제목 변경");
+      //      dao.update(b);
+
       // 5) delete() 테스트
-//      dao.delete(10);
-      
-//      System.out.println("실행완료");
+      //      dao.delete(10);
+
+      //      System.out.println("실행완료");
 
     }
 
