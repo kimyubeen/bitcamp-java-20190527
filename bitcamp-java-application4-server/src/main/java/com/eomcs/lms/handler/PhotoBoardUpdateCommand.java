@@ -2,7 +2,9 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
+import java.sql.SQLException;
 import java.util.List;
+import com.eomcs.lms.App;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
@@ -23,6 +25,8 @@ public class PhotoBoardUpdateCommand implements Command {
   public void execute(BufferedReader in, PrintStream out) {
 
     try {
+      App.con.setAutoCommit(false);
+
       int no = Input.getIntValue(in, out, "번호? ");
       PhotoBoard photoBoard = photoBoardDao.findBy(no);
 
@@ -52,12 +56,12 @@ public class PhotoBoardUpdateCommand implements Command {
       out.println("사진은 일부만 변경할 수 없습니다.");
       out.println("전체를 새로 등록해야 합니다.");
       String response = Input.getStringValue(in, out, "사진을 변경하시겠습니까?(y/N)");
-      
+
       if (!response.equalsIgnoreCase("y")) {
         out.println("파일 변경을 취소합니다.");
         return;
       }
-      
+
       // 기존 사진 파일을 삭제한다.
       photoFileDao.deleteAll(no);
 
@@ -82,13 +86,27 @@ public class PhotoBoardUpdateCommand implements Command {
         photoFileDao.insert(photoFile);
         count++;
       }
+
+      App.con.commit();
       out.println("사진을 변경하였습니다.");
 
-  } catch (Exception e) {
-    out.println("데이터 변경에 실패했습니다.");
-    System.out.println(e.getMessage());
-  }
+    } catch (Exception e) {
+      // 예외가 발생하면 DBMS의 임시 데이터베이스에 보관된 데이터 변경 작업들을 모두 취소한다.
+      try {
+        App.con.rollback();
+      } catch (SQLException e1) {
+        e1.printStackTrace();
+      }
+      out.println("데이터 변경에 실패했습니다.");
+      System.out.println(e.getMessage());
+    } finally {
+      try {
+        App.con.setAutoCommit(true);
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
 
-}
+  }
 
 }
