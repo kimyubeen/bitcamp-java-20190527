@@ -26,28 +26,38 @@ public class MemberUpdateCommand implements Command {
         out.println("해당 회원을 찾을 수 없습니다.");
         return;
       }
-
+      
+      // 사용자로부터 변경할 값을 입력 받는다.
+      Member data = new Member();
+      data.setNo(no);
+      
       String str = Input.getStringValue(in, out, "이름(" + member.getName() + ")? ");
-      if (str.length() > 0)
-        member.setName(str);
-
+      if (str.length() > 0) {
+        data.setName(str);
+      }
+      
       str = Input.getStringValue(in, out, "이메일(" + member.getEmail() + ")? ");
-      if (str.length() > 0)
-        member.setEmail(str);
+      if (str.length() > 0) {
+        data.setEmail(str);
+      }
 
-      str = Input.getStringValue(in, out, "암호(" + member.getPassword() + ")? ");
-      if (str.length() > 0)
-        member.setPassword(str);
+      str = Input.getStringValue(in, out, "암호? ");
+      if (str.length() > 0) {
+        data.setPassword(str);
+      }
 
       str = Input.getStringValue(in, out, "사진(" + member.getPhoto() + ")? ");
-      if (str.length() > 0)
-        member.setPhoto(str);
+      if (str.length() > 0) {
+        data.setPhoto(str);
+      }
 
       str = Input.getStringValue(in, out, "전화(" + member.getTel() + ")? ");
-      if (str.length() > 0)
-        member.setTel(str);
+      if (str.length() > 0) {
+        data.setTel(str);
+      }
 
-      memberDao.update(member);
+      memberDao.update(data);
+      
       out.println("회원을 변경했습니다.");
     } catch (Exception e) {
       out.println("데이터 변경에 실패했습니다.");
