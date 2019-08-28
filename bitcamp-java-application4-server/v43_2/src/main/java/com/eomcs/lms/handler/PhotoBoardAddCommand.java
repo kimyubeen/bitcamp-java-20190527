@@ -15,7 +15,9 @@ public class PhotoBoardAddCommand implements Command {
   private PhotoFileDao photoFileDao;
 
   public PhotoBoardAddCommand(
-      PlatformTransactionManager txManager, PhotoBoardDao photoBoardDao, PhotoFileDao photoFileDao) {
+      PlatformTransactionManager txManager, 
+      PhotoBoardDao photoBoardDao, 
+      PhotoFileDao photoFileDao) {
     this.txManager = txManager;
     this.photoBoardDao = photoBoardDao;
     this.photoFileDao = photoFileDao;
@@ -26,7 +28,7 @@ public class PhotoBoardAddCommand implements Command {
   public void execute(BufferedReader in, PrintStream out) {
     try {
       txManager.beginTransaction();
-      
+
       PhotoBoard photoBoard = new PhotoBoard();
       photoBoard.setTitle(Input.getStringValue(in, out, "제목? "));
       photoBoard.setLessonNo(Input.getIntValue(in, out, "수업? "));

@@ -16,18 +16,11 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public int insert(Member member) throws Exception {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
+    
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       int count = sqlSession.insert("MemberDao.insert", member);
-      sqlSession.commit();
       return count;
 
-    } catch (Exception e) {
-      sqlSession.rollback();
-      throw e;
-
-    } finally {
-      sqlSession.close();
     }
 
   }
@@ -41,16 +34,10 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public Member findBy(int no) throws Exception {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       Member member = sqlSession.selectOne("MemberDao.findBy", no);
       return member;
 
-    } catch (Exception e) {
-      throw e;
-
-    } finally {
-      sqlSession.close();
     }
   }
 
@@ -63,14 +50,14 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public int update(Member member) throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.update("MemberDao.update", member);
     }
   }
 
   @Override
   public int delete(int no) throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.delete("MemberDao.delete", no);
     }
   }

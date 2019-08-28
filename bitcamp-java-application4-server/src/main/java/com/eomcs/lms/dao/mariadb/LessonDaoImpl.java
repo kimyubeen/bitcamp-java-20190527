@@ -15,18 +15,11 @@ public class LessonDaoImpl implements LessonDao {
 
   @Override
   public int insert(Lesson lesson) throws Exception {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
+    
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       int count = sqlSession.insert("LessonDao.insert", lesson);
-      sqlSession.commit();
       return count;
 
-    } catch (Exception e) {
-      sqlSession.rollback();
-      throw e;
-
-    } finally {
-      sqlSession.close();
     }
 
   }
@@ -40,22 +33,17 @@ public class LessonDaoImpl implements LessonDao {
 
   @Override
   public Lesson findBy(int no) throws Exception {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
+    
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       Lesson lesson = sqlSession.selectOne("LessonDao.findBy", no);
       return lesson;
 
-    } catch (Exception e) {
-      throw e;
-
-    } finally {
-      sqlSession.close();
     }
   }
 
   @Override
   public int update(Lesson lesson) throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.update("LessonDao.update", lesson);
     }
 
@@ -63,7 +51,7 @@ public class LessonDaoImpl implements LessonDao {
 
   @Override
   public int delete(int no) throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.delete("LessonDao.delete", no);
     }
 
