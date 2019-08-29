@@ -1,4 +1,4 @@
-// v45_2 :Mybatis의 DAO 구현체 자동 생성기 이용하기(BoardXxxCommand 에만 적용)
+// v45_1 : Java Proxy를 이용하여 DAO 구현체 자동 생성하기
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.dao.PhotoBoardDao;
@@ -75,6 +76,7 @@ public class App {
       // DAO 구현체 생성기를 준비한다.
       MybatisDaoFactory daoFactory = new MybatisDaoFactory(sqlSessionFactory);
 
+      BoardDao boardDao = daoFactory.createDao(BoardDao.class);
       MemberDao memberDao = daoFactory.createDao(MemberDao.class);
       LessonDao lessonDao = daoFactory.createDao(LessonDao.class);
       PhotoBoardDao photoBoardDao = daoFactory.createDao(PhotoBoardDao.class);
@@ -94,11 +96,11 @@ public class App {
       commandMap.put("/member/update", new MemberUpdateCommand(memberDao));
       commandMap.put("/member/search", new MemberSearchCommand(memberDao));
 
-      commandMap.put("/board/add", new BoardAddCommand(sqlSessionFactory));
-      commandMap.put("/board/delete", new BoardDeleteCommand(sqlSessionFactory));
-      commandMap.put("/board/detail", new BoardDetailCommand(sqlSessionFactory));
-      commandMap.put("/board/list", new BoardListCommand(sqlSessionFactory));
-      commandMap.put("/board/update", new BoardUpdateCommand(sqlSessionFactory));
+      commandMap.put("/board/add", new BoardAddCommand(boardDao));
+      commandMap.put("/board/delete", new BoardDeleteCommand(boardDao));
+      commandMap.put("/board/detail", new BoardDetailCommand(boardDao));
+      commandMap.put("/board/list", new BoardListCommand(boardDao));
+      commandMap.put("/board/update", new BoardUpdateCommand(boardDao));
 
       commandMap.put("/photoboard/add", 
           new PhotoBoardAddCommand(txManager, photoBoardDao, photoFileDao));
