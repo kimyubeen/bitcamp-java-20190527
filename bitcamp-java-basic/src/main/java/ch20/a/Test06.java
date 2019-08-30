@@ -1,4 +1,4 @@
-// java.util.LinkedList 사용법
+// java.util.LinkedList의 forEach() 사용법
 package ch20.a;
 
 import java.util.LinkedList;

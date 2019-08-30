@@ -13,6 +13,10 @@ public class MemberSearchCommand implements Command {
   public MemberSearchCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
+
+  public String getCommandName() {
+    return "/member/search";
+  }
   
   @Override
   public void execute(BufferedReader in, PrintStream out) {

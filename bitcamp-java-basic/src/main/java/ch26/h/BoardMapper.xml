@@ -74,7 +74,7 @@
       b.view_count,
       f.board_file_id,
       f.file_path,
-      f.board_id as boardNo
+      f.board_id 
     from x_board b
       left outer join x_board_file f on b.board_id = f.board_id
     where

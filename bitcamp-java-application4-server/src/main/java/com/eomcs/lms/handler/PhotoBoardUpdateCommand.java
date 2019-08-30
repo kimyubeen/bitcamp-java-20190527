@@ -23,6 +23,10 @@ public class PhotoBoardUpdateCommand implements Command {
 
   }
 
+  public String getCommandName() {
+    return "/photoboard/update";
+  }
+
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {
@@ -59,7 +63,6 @@ public class PhotoBoardUpdateCommand implements Command {
       String response = Input.getStringValue(in, out, "사진을 변경하시겠습니까?(y/N)");
 
       if (!response.equalsIgnoreCase("y")) {
-        txManager.commit();
         out.println("파일 변경을 취소합니다.");
         return;
       }

@@ -12,6 +12,10 @@ public class MemberListCommand implements Command {
   public MemberListCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
+
+  public String getCommandName() {
+    return "/member/list";
+  }
   
   @Override
   public void execute(BufferedReader in, PrintStream out) {

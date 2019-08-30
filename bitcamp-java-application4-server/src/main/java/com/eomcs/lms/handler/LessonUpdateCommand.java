@@ -14,6 +14,10 @@ public class LessonUpdateCommand implements Command {
     this.lessonDao = lessonDao;
   }
 
+  public String getCommandName() {
+    return "/lesson/update";
+  }
+
   @Override
   public void execute(BufferedReader in, PrintStream out) {
 

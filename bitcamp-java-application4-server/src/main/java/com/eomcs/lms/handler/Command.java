@@ -4,6 +4,11 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 
 public interface Command {
+  
+  String getCommandName();
+  
+  default String getName() {return null;}
+  
   // 기존 규칙은 그데로 둔다.
   default void execute() {}
   
