@@ -27,7 +27,7 @@
   <!-- 예외 발생!
   <bean id="c2" class="ch29.d.Car"
         p:maker="비트자동차" p:model="모델4" p:blackBox-ref="bb1"/>
-  -->  
+  -->
       
   <bean id="c3" class="ch29.d.Car">
     <property name="maker" value="비트자동차"/>

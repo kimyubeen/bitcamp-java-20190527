@@ -16,6 +16,7 @@
   <bean id="c2" class="ch29.b.Car2" scope="singleton"/>
   <bean id="c3" class="ch29.b.Car3" scope="prototype"/>
   
+  
 </beans>
 
 
