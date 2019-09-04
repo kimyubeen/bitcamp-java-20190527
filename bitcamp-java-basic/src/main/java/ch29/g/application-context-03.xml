@@ -15,7 +15,6 @@
        => 기존에는 String을 자바 원시 타입으로 변환시켜주는 프로퍼티 에디터만 등록되어 있다.
        => 다른 프로퍼티 에디터를 등록하고 싶으면 이 클래스의 객체를 생성해야 한다.
        => 그리고 이 객체에 등록하고 싶은 프로퍼티 에디터를 지정해야 한다.
-       => 한개만 만들어야 한다.
   -->
   <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
     <property name="customEditors">
@@ -28,7 +27,6 @@
       </map>
     </property>
   </bean>  
-
   
   <bean id="c1" class="ch29.g.Car">
     <property name="maker" value="비트자동차"/>

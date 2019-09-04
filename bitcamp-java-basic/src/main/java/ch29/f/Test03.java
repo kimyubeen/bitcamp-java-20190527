@@ -10,6 +10,7 @@ public class Test03 {
     ApplicationContext iocContainer = 
         new ClassPathXmlApplicationContext("ch29/f/application-context-03.xml");
     
+    System.out.println("---------------------------------------");
     SpringUtils.printObjects(iocContainer);
     System.out.println("---------------------------------------");
     
