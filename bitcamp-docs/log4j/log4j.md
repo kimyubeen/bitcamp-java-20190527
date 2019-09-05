@@ -101,9 +101,11 @@ log4j.appender.aaa.layout.ConversionPattern=%5p [%t] - %m%n
 log4j.logger.로거이름=레벨
 log4j.logger.자바 패키지 이름=레벨
 예)
-log4j.logger.
-log4j.logger.
-log4j.logger.
+log4j.logger.okok=DEBUG
+log4j.logger.com.eomcs.lms.dao=DEBUG
+log4j.logger.com.eomcs.lms.dao.BoardDao=DEBUG
+
+```
 
 
 
