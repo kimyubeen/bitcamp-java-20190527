@@ -19,22 +19,21 @@ import com.eomcs.util.RequestMappingHandlerMapping;
 import com.eomcs.util.RequestMappingHandlerMapping.RequestHandler;
 
 public class CommandHttpRequestHandler implements HttpRequestHandler {
-  
-  private static final Logger logger =
+
+  private static final Logger logger = 
       LogManager.getLogger(CommandHttpRequestHandler.class);
   
-
   RequestMappingHandlerMapping handlerMapping;
-
+  
   public CommandHttpRequestHandler(RequestMappingHandlerMapping handlerMapping) {
     this.handlerMapping = handlerMapping;
   }
-
+  
   @Override
   public void handle(HttpRequest request, HttpResponse response, HttpContext context)
       throws HttpException, IOException {
-
-    // 클라이언트가 요청한 방식을 알아낸다.
+    
+    // 클라이언트가 요청한 방식을 알아 낸다.
     String method = request.getRequestLine().getMethod().toUpperCase(Locale.ROOT);
     if (!method.equals("GET")) { // GET 요청이 아니라면 오류 내용을 응답한다.
       throw new MethodNotSupportedException(method + " method not supported");
@@ -50,7 +49,7 @@ public class CommandHttpRequestHandler implements HttpRequestHandler {
       if (requestHandler != null) {
         // 클라이언트 요청 처리
         StringWriter out = new StringWriter();
-        requestHandler.method.invoke(requestHandler.bean,
+        requestHandler.method.invoke(requestHandler.bean, 
             null, new PrintWriter(out));
         
         // 클라이언트에게 응답
@@ -69,21 +68,28 @@ public class CommandHttpRequestHandler implements HttpRequestHandler {
         response.setEntity(entity);
         logger.info("실패!");
       }
-
+      
     } catch (Exception e) {
       logger.info("클라이언트 요청 처리 중 오류 발생!");
       
       StringWriter out2 = new StringWriter();
       e.printStackTrace(new PrintWriter(out2));
       logger.debug(out2.toString());
-      
+
       response.setStatusCode(HttpStatus.SC_OK);
       StringEntity entity = new StringEntity(
           "<html><body><h1>요청 처리 중 오류 발생!</h1></body></html>",
           ContentType.create("text/html", "UTF-8"));
       response.setEntity(entity);
       
-      
     }
   }
+
 }
+
+
+
+
+
+
+
