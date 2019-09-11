@@ -60,6 +60,7 @@ public class Servlet04 extends GenericServlet {
     // getParameter()가 null을 리턴한다는 것을 확인하기 위해 
     // 파라미터 모두 String으로 받는다.
     // => 멀티파트 형식으로 전송된 데이터는 getParameter()로 꺼낼 수 없다.
+    
     /*
     String age = req.getParameter("age");
     String name = req.getParameter("name");
@@ -115,6 +116,7 @@ public class Servlet04 extends GenericServlet {
           // 전체 파일 경로를 준비한다.
           // => /java-web/upload/파일명
           File file = new File(this.uploadDir + "/" + filename);
+          System.out.println(file.getCanonicalPath());
           
           // 파일 경로에 업로드 파일을 저장한다.
           part.write(file);
@@ -140,6 +142,7 @@ public class Servlet04 extends GenericServlet {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
   }
 }
 
