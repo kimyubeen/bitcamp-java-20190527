@@ -62,10 +62,21 @@ public class Servlet01 extends HttpServlet {
       // 반복만 다음에 헤더를 설정하기 전에 이미 버퍼 내용이 출력된다.
       // 즉 응답이 완료된다.
       // 응답을 완료한 다음에 응답 헤더의 값을 변경하거나 추가해봐야 소용없다. 
-      out.println(i + "  ===> 1234567890123456789012345678901234567890");
+      //out.println(i + "  ===> 1234567890123456789012345678901234567890");
     }
     
     response.setHeader("Refresh", "3;url=s100");
+    
+    // 이 메서드의 호출이 끝나면 비로서 응답 프로토콜에 맞춰
+    // 클라이언트로 헤더와 내용을 전송한다.
   }
 }
 
+//HTTP 응답 프로토콜 예:
+/*
+HTTP/1.1 200
+Refresh: 3;url=s100
+Content-Type: text/plain;charset=UTF-8
+Content-Length: 29
+Date: Mon, 16 Sep 2019 03:39:50 GMT
+*/

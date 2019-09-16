@@ -12,7 +12,6 @@
   <display-name>웹 애플리케이션의 이름</display-name>
 
 <!-- 컨텍스트 초기화 파라미터 정보 -->
-<!-- 
   <context-param>
     <param-name>jdbc.driver</param-name>
     <param-value>org.mariadb.jdbc.Driver</param-value>
@@ -33,7 +32,6 @@
     <param-name>encoding</param-name>
     <param-value>UTF-8</param-value>
   </context-param>
--->
 
   <!-- 리스너 배치 정보 -->
 <!-- 
@@ -66,7 +64,6 @@
   </filter-mapping>
 -->
 
-<!-- 
   <filter>
     <filter-name>ex06 Filter01</filter-name>
     <filter-class>bitcamp.ex06.Filter01</filter-class>
@@ -75,15 +72,10 @@
       <param-value>UTF-8</param-value>
     </init-param>
   </filter>
--->
-  
-  <!-- 필터를 언제 실행할 지 결정하기 위해 URL을 지정한다. -->
-<!-- 
   <filter-mapping>
     <filter-name>ex06 Filter01</filter-name>
     <url-pattern>/ex06/*</url-pattern>
   </filter-mapping>
--->
 
   <!-- 서블릿 배치 정보 설정
        => 웹 애플리케이션에 어떤 서블릿이 있는지 지정한다. -->
@@ -136,7 +128,6 @@
     <servlet-name>bitcamp.ex04.Servlet05</servlet-name>
     <url-pattern>/ex04/s5</url-pattern>
   </servlet-mapping>
-<!--
   <servlet>
     <servlet-name>bitcamp.ex06.Servlet02</servlet-name>
     <servlet-class>bitcamp.ex06.Servlet02</servlet-class>
@@ -162,15 +153,12 @@
       <param-value>1111</param-value>
     </init-param>
   </servlet>
--->
-  
 
-<!-- 
   <servlet-mapping>
     <servlet-name>bitcamp.ex06.Servlet04</servlet-name>
     <url-pattern>/ex06/s4</url-pattern>
   </servlet-mapping>
-  
+  <!-- 
   <servlet>
     <servlet-name>HelloServlet</servlet-name>
     <servlet-class>bitcamp.HelloServlet</servlet-class>
@@ -192,8 +180,7 @@
     <servlet-name>upload.jsp</servlet-name>
     <url-pattern>/fileupload/upload.jsp</url-pattern>
   </servlet-mapping>
--->
-  
+   -->
   
   <session-config>
     <session-timeout>1</session-timeout>
