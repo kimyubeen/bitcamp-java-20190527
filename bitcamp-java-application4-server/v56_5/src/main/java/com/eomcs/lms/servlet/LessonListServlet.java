@@ -9,28 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
-import com.eomcs.lms.dao.MemberDao;
-import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.dao.LessonDao;
+import com.eomcs.lms.domain.Lesson;
 
-@WebServlet("/member/search")
-public class MemberSearchServlet extends HttpServlet {
+@WebServlet("/lesson/list")
+public class LessonListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
-  private MemberDao memberDao;
+  private LessonDao lessonDao;
 
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
         (ApplicationContext) getServletContext().getAttribute("iocContainer");
-    memberDao = appCtx.getBean(MemberDao.class);
+    lessonDao = appCtx.getBean(LessonDao.class);
   }
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("<html><head><title>회원 검색</title>"
+    out.println("<html><head><title>수업 목록</title>"
         + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
@@ -39,34 +40,31 @@ public class MemberSearchServlet extends HttpServlet {
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
-    out.println("<h1>회원 검색</h1>");
-    
+    out.println("<h1>수업 목록</h1>");
+    out.println("<a href='/lesson/add'>새 수업</a><br>");
     try {
       out.println("<table class='table table-hover'>");
-      out.println("<tr><th>번호</th><th>이름</th><th>이메일</th><th>전화</th><th>등록일</th></tr>");
-      
-      List<Member> members = memberDao.findByKeyword(
-          request.getParameter("keyword"));
-      for (Member member : members) {
+      out.println("<tr><th>번호</th><th>수업</th><th>기간</th><th>총수업시간</th></tr>");
+      List<Lesson> lessons = lessonDao.findAll();
+      for (Lesson lesson : lessons) {
         out.printf("<tr>"
             + "<td>%d</td>"
-            + "<td><a href='/member/detail?no=%d'>%s</a></td>"
-            + "<td>%s</td>"
-            + "<td>%s</td>"
-            + "<td>%s</td></tr>\n", 
-            member.getNo(),
-            member.getNo(),
-            member.getName(), 
-            member.getEmail(), 
-            member.getTel(),
-            member.getRegisteredDate());
+            + "<td><a href='/lesson/detail?no=%d'>%s</a></td>"
+            + "<td>%s ~ %s</td>"
+            + "<td>%d</td></tr>\n", 
+            lesson.getNo(),
+            lesson.getNo(),
+            lesson.getTitle(), 
+            lesson.getStartDate(), 
+            lesson.getEndDate(), 
+            lesson.getTotalHours());
       }
       out.println("</table>");
       
     } catch (Exception e) {
-      out.println("<p>데이터 검색에 실패했습니다!</p>");
+      out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
-    
+      
     } finally {
       out.println("</div>");
       request.getRequestDispatcher("/footer").include(request, response);
@@ -74,3 +72,15 @@ public class MemberSearchServlet extends HttpServlet {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
