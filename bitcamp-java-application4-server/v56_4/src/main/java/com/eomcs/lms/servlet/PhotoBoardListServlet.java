@@ -14,13 +14,7 @@ import com.eomcs.lms.domain.PhotoBoard;
 
 @WebServlet("/photoboard/list")
 public class PhotoBoardListServlet extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
-  // 이 클래스에서 로그를 출력할 일이 있다면 다음과 같이 로거를 만들어 사용하라!
-  /*
-  private static final Logger logger = 
-      LogManager.getLogger(PhotoBoardCommand.class);
-  */
   
   private PhotoBoardDao photoBoardDao;
   
@@ -30,22 +24,23 @@ public class PhotoBoardListServlet extends HttpServlet {
         (ApplicationContext) getServletContext().getAttribute("iocContainer");
     photoBoardDao = appCtx.getBean(PhotoBoardDao.class);
   }
-  
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    response.setContentType("text/html;charSet=UTF-8");
+    
+    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>사진게시물 목록</title>"
         + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
-    
+
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
-    out.println("<body><h1>사진게시물 목록</h1>");
+    out.println("<h1>사진게시물 목록</h1>");
     out.println("<a href='/photoboard/add'>새 사진게시물</a><br>");
     
     try {
@@ -78,5 +73,4 @@ public class PhotoBoardListServlet extends HttpServlet {
       out.println("</body></html>");
     }
   }
-
 }

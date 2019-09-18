@@ -38,7 +38,7 @@ public class MemberDetailServlet extends HttpServlet {
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
-    out.println("<body><h1>회원 상세</h1>");
+    out.println("<h1>회원 상세</h1>");
     
     try {
       int no = Integer.parseInt(request.getParameter("no"));

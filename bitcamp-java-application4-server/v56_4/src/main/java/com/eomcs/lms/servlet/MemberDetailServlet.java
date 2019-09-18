@@ -14,7 +14,7 @@ import com.eomcs.lms.domain.Member;
 @WebServlet("/member/detail")
 public class MemberDetailServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
- 
+  
   private MemberDao memberDao;
 
   @Override
@@ -25,9 +25,10 @@ public class MemberDetailServlet extends HttpServlet {
   }
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    response.setContentType("text/html;charSet=UTF-8");
+    
+    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원 상세</title>"
         + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
@@ -38,7 +39,7 @@ public class MemberDetailServlet extends HttpServlet {
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
-    out.println("<body><h1>회원 상세</h1>");
+    out.println("<h1>회원 상세</h1>");
     
     try {
       int no = Integer.parseInt(request.getParameter("no"));
