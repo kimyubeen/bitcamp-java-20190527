@@ -49,7 +49,6 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
 
       photoBoardDao.update(photoBoard);
       photoFileDao.deleteAll(photoBoard.getNo());
-      response.sendRedirect("/photoboard/list");
 
       int count = 0;
       for (int i = 1; i <= 6; i++) {
@@ -67,7 +66,8 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
       if (count == 0) {
         throw new Exception("최소 한개의 사진 파일을 등록해야 합니다.");
       }
-      
+
+      response.sendRedirect("/photoboard/list");
       
     } catch (Exception e) {
       response.setContentType("text/html;charSet=UTF-8");

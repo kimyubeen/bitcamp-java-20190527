@@ -1,4 +1,4 @@
-// v56_3 : 리다이렉트와 리프레시 활용
+// v56_4 : 
 package com.eomcs.lms;
 
 public class App {
