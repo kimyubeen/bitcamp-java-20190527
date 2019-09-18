@@ -1,10 +1,19 @@
-// v56_7 : 필터를 활용하여 로그인 여부 검사하기
+// v56_8 : 멀티파트 파라미터 처리하기
 package com.eomcs.lms;
 
 public class App {
   // 작업:
-  // => AuthFilter 생성
-  // => web.xml 변경
+  // => /webApp/upload/member 디렉토리 생성
+  // => MemberAddServlet 변경
+  // => MemberDetailServlet 변경
+  // => /webapp/css/common.css 변경
+  // => MemberUpdateServlet 변경
+   
+  // => /webApp/upload/photoboard 디렉토리 생성
+  // => PhotoboardAddServlet 변경
+  // => PhotoboardDetailServlet 변경
+  // => /webapp/css/common.css 변경
+  // => PhotoboardUpdateServlet 변경
   
   // dummy 클래스!
   // => 기존 버전에서 계속 존재했던 클래스라서 그대로 둠
