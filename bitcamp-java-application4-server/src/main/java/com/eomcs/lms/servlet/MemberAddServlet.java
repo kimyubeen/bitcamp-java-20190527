@@ -25,11 +25,20 @@ public class MemberAddServlet extends HttpServlet {
   }
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
     response.setContentType("text/html;charSet=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("<html><head><title>회원 등록폼</title></head>");
-    out.println("<body><h1>회원 등록폼</h1>");
+    out.println("<html><head><title>회원 등록폼</title>"
+        + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
+        + "<link rel='stylesheet' href='/css/common.css'>"
+        + "</head>");
+    out.println("<body>");
+    
+    request.getRequestDispatcher("/header").include(request, response);
+    
+    out.println("<div id='content'>");
+    out.println("<h1>회원 등록폼</h1>");
     out.println("<form action='/member/add' method='post'>");
     out.println("이름: <input type='text' name='name'><br>");
     out.println("이메일: <input type='text' name='email'><br>");
@@ -38,6 +47,8 @@ public class MemberAddServlet extends HttpServlet {
     out.println("전화: <input type='text' name='tel'><br>");
     out.println("<button>등록</button>");
     out.println("</form>");
+    out.println("</div>");
+    request.getRequestDispatcher("/footer").include(request, response);
     out.println("</body></html>");
   }
 

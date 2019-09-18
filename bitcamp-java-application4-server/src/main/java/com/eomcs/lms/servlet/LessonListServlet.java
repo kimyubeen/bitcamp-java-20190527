@@ -26,12 +26,19 @@ public class LessonListServlet extends HttpServlet {
   }
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
     response.setContentType("text/html;charSet=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>수업 목록</title>"
         + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
+        + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
+    out.println("<body>");
+    
+    request.getRequestDispatcher("/header").include(request, response);
+    
+    out.println("<div id='content'>");
     out.println("<body><h1>수업 목록</h1>");
     out.println("<a href='/lesson/add'>새 수업</a><br>");
     try {
@@ -58,6 +65,8 @@ public class LessonListServlet extends HttpServlet {
       throw new RuntimeException(e);
       
     } finally {
+      out.println("</div>");
+      request.getRequestDispatcher("/footer").include(request, response);
       out.println("</body></html>");
     }
   }
