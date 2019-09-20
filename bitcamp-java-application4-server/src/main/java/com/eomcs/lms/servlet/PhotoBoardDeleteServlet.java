@@ -17,7 +17,7 @@ import com.eomcs.lms.dao.PhotoFileDao;
 @WebServlet("/photoboard/delete")
 public class PhotoBoardDeleteServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private PlatformTransactionManager txManager;
   private PhotoBoardDao photoBoardDao;
   private PhotoFileDao photoFileDao;
@@ -32,15 +32,15 @@ public class PhotoBoardDeleteServlet extends HttpServlet {
   }
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
     
     // 트랜잭션 동작을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
     def.setName("tx1");
     def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-    // 정의된 트랜잭션 동작에 따라 작업을 수행할 트랜잭션 객체를 준비한다.
+    
+    // 정의된 트랜잭션 동작에 따라 작업을 수행할 트랜잭션 객체를 준비한다. 
     TransactionStatus status = txManager.getTransaction(def);
     
     try {
@@ -56,16 +56,15 @@ public class PhotoBoardDeleteServlet extends HttpServlet {
       txManager.commit(status);
       
       response.sendRedirect("/photoboard/list");
-
       
     } catch (Exception e) {
+      
       txManager.rollback(status);
       
       request.setAttribute("message", "데이터 삭제에 실패했습니다!");
       request.setAttribute("refresh", "/photoboard/list");
       request.setAttribute("error", e);
-      request.getRequestDispatcher("/error").forward(request, response);
-      
+      request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
     }
   }
 }

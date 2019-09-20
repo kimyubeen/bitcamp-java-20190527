@@ -1,7 +1,6 @@
 package com.eomcs.lms.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,56 +27,23 @@ public class LessonDetailServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
     response.setContentType("text/html;charSet=UTF-8");
-    PrintWriter out = response.getWriter();
-    out.println("<html><head><title>수업 상세</title>"
-        + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
-        + "<link rel='stylesheet' href='/css/common.css'>"
-        + "</head>");
-    out.println("<body>");
-
-    request.getRequestDispatcher("/header").include(request, response);
-    
-    out.println("<div id='content'>");
-    out.println("<body><h1>수업 상세</h1>");
     try {
       int no = Integer.parseInt(request.getParameter("no"));
-
       Lesson lesson = lessonDao.findBy(no);
 
       if (lesson == null) {
-        out.println("<p>해당 번호의 데이터가 없습니다!</p>");
+        throw new Exception("해당 번호의 데이터가 없습니다!");
 
-      } else {
-        out.println("<form action='/lesson/update' method='post'>");
-        out.printf("번호 : <input type='text' name='no' value='%d' readonly><br>\n",
-            lesson.getNo());
-        out.printf("수업명 : <textarea name='title' rows='5' cols='50'>%s</textarea><br>\n",
-            lesson.getTitle());
-        out.printf("수업내용 :<textarea name='contents' rows='5' cols='50'>%s</textarea><br>\n",
-            lesson.getContents());
-        out.printf("시작일 : <textarea name='startDate' rows='5' cols='50'>%s</textarea><br>\n",
-            lesson.getStartDate());
-        out.printf("종료일 : <textarea name='endDate' rows='5' cols='50'>%s</textarea><br>\n",
-            lesson.getEndDate());
-        out.printf("총수업시간 : <textarea name='totalHours' rows='5' cols='50'>%s</textarea><br>\n",
-            lesson.getTotalHours());
-        out.printf("일수업시간 : <textarea name='dayHours' rows='5' cols='50'>%s</textarea><br>\n",
-            lesson.getDayHours());
-        out.println("<button>변경</button>");
-        out.printf("<a href='/lesson/delete?no=%d'>삭제</a>\n",
-            lesson.getNo());
-        out.println("</form>");
       }
+      
+      request.setAttribute("lesson", lesson);
+      request.getRequestDispatcher("/jsp/lesson/detail.jsp").include(request, response);
 
     } catch (Exception e) {
-      out.println("<p>데이터 저장에 실패했습니다!</p>");
-      throw new RuntimeException(e);
-      
-    } finally {
-      out.println("</div>");
-      request.getRequestDispatcher("/footer").include(request, response);
-      
-      out.println("</body></html>");
+      request.setAttribute("message", e.getMessage());
+      request.setAttribute("refresh", "/board/list");
+      request.setAttribute("error", e);
+      request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
     }
   }
 }

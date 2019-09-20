@@ -37,7 +37,7 @@ public class MemberDeleteServlet extends HttpServlet {
       request.setAttribute("message", "데이터 삭제에 실패했습니다!");
       request.setAttribute("refresh", "/member/list");
       request.setAttribute("error", e);
-      request.getRequestDispatcher("/error").forward(request, response);
+      request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
       
     }
   }
