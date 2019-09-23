@@ -21,10 +21,15 @@ import com.eomcs.lms.domain.PhotoFile;
 @Component("/photoboard/update")
 public class PhotoBoardUpdateController implements PageController {
 
-  @Resource
   String uploadDir;
+  
+  @Resource
   private PlatformTransactionManager txManager;
+  
+  @Resource
   private PhotoBoardDao photoBoardDao;
+  
+  @Resource
   private PhotoFileDao photoFileDao;
 
   @Override

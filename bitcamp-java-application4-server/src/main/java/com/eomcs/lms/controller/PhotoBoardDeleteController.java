@@ -16,7 +16,11 @@ public class PhotoBoardDeleteController implements PageController {
 
   @Resource
   private PlatformTransactionManager txManager;
+  
+  @Resource
   private PhotoBoardDao photoBoardDao;
+  
+  @Resource
   private PhotoFileDao photoFileDao;
 
   @Override
