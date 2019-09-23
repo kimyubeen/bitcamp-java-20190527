@@ -11,8 +11,9 @@ import com.eomcs.lms.domain.Member;
 @Component("/member/search")
 public class MemberSearchController implements PageController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
+
 
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
@@ -22,8 +23,6 @@ public class MemberSearchController implements PageController {
         request.getParameter("keyword"));
 
     request.setAttribute("members", members);
-
-    return "/jsp/member/detail.jsp";
-    
+    return "/jsp/member/search.jsp";
   }
 }

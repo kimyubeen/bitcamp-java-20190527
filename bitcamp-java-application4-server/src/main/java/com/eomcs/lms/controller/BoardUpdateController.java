@@ -22,6 +22,5 @@ public class BoardUpdateController implements PageController {
     boardDao.update(board);
 
     return "redirect:list";
-
   }
 }

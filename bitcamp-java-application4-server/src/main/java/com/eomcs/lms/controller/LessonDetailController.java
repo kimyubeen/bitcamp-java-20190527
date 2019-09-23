@@ -26,7 +26,6 @@ public class LessonDetailController implements PageController {
 
     request.setAttribute("lesson", lesson);
     return "/jsp/lesson/detail.jsp";
-
   }
 }
 

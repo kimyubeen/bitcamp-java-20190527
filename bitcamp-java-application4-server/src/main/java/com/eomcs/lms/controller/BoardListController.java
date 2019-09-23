@@ -11,17 +11,16 @@ import com.eomcs.lms.domain.Board;
 @Component("/board/list")
 public class BoardListController implements PageController {
   
-  //@AutoWired // 스프링 애노테이션
+  //@Autowired // 스프링 애노테이션
   @Resource // java 표준 애노테이션
-  private BoardDao boardDao; // Spring IoC 컨테이너가 의존 객체를 자동으로 주입해 준다.
+  private BoardDao boardDao;  // Spring IoC 컨테이너가 의존 객체를 자동으로 주입해 준다.
   
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
     
-      List<Board> boards = boardDao.findAll();
-      request.setAttribute("boards", boards);
-      return "/jsp/board/list.jsp";
-      
+    List<Board> boards = boardDao.findAll();
+    request.setAttribute("boards", boards);
+    return "/jsp/board/list.jsp";
   }
 }

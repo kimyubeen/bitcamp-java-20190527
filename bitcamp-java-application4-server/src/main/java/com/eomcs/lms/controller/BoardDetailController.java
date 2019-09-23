@@ -28,6 +28,5 @@ public class BoardDetailController implements PageController {
 
     request.setAttribute("board", board);
     return "/jsp/board/detail.jsp";
-
   }
 }

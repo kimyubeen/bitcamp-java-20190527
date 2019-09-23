@@ -17,12 +17,10 @@ public class LessonAddController implements PageController {
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/lesson/form.jsp";
-      
     }
-    
+
     Lesson lesson = new Lesson();
     lesson.setTitle(request.getParameter("title"));
     lesson.setContents(request.getParameter("contents"));
@@ -34,7 +32,6 @@ public class LessonAddController implements PageController {
     lessonDao.insert(lesson);
 
     return "redirect:list";
-
   }
 }
 

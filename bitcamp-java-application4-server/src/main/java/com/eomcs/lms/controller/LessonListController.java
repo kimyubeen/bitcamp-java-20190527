@@ -18,12 +18,9 @@ public class LessonListController implements PageController {
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     List<Lesson> lessons = lessonDao.findAll();
     request.setAttribute("lessons", lessons);
-
     return "/jsp/lesson/list.jsp";
-
   }
 }
 

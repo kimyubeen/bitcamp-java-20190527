@@ -19,7 +19,6 @@ public class BoardAddController implements PageController {
 
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/board/form.jsp";
-
     }
 
     Board board = new Board();
@@ -28,4 +27,5 @@ public class BoardAddController implements PageController {
 
     return "redirect:list";
   }
+
 }

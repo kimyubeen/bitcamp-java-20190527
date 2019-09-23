@@ -10,8 +10,7 @@ import com.eomcs.lms.domain.PhotoBoard;
 @Component("/photoboard/detail")
 public class PhotoBoardDetailController implements PageController {
 
-  @Resource
-  private PhotoBoardDao photoBoardDao;
+  @Resource private PhotoBoardDao photoBoardDao;
 
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
@@ -26,8 +25,6 @@ public class PhotoBoardDetailController implements PageController {
     photoBoardDao.increaseViewCount(no);
 
     request.setAttribute("photoBoard", photoBoard);
-
     return "/jsp/photoboard/detail.jsp";
-
   }
 }

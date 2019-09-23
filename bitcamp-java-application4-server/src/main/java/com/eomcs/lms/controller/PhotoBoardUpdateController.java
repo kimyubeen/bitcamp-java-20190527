@@ -10,40 +10,34 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
 
-@Transactional
 @Component("/photoboard/update")
 public class PhotoBoardUpdateController implements PageController {
 
-  String uploadDir;
-  
-  @Resource
-  private PlatformTransactionManager txManager;
-  
-  @Resource
-  private PhotoBoardDao photoBoardDao;
-  
-  @Resource
-  private PhotoFileDao photoFileDao;
+  @Resource private PlatformTransactionManager txManager;
+  @Resource private PhotoBoardDao photoBoardDao;
+  @Resource private PhotoFileDao photoFileDao;
 
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    //트랜잭션 동작을 정의한다.
+    String uploadDir = request.getServletContext().getRealPath("/upload/photoboard");
+
+    // 트랜잭션 동작을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
     def.setName("tx1");
     def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-    
+
     // 정의된 트랜잭션 동작에 따라 작업을 수행할 트랜잭션 객체를 준비한다. 
     TransactionStatus status = txManager.getTransaction(def);
-    
+
+    try {
       PhotoBoard photoBoard = new PhotoBoard();
       photoBoard.setNo(Integer.parseInt(request.getParameter("no")));
       photoBoard.setTitle(request.getParameter("title"));
@@ -60,7 +54,7 @@ public class PhotoBoardUpdateController implements PageController {
         // 클라이언트가 보낸 파일을 디스크에 저장한다.
         String filename = UUID.randomUUID().toString();
         part.write(uploadDir + "/" + filename);
-        
+
         // 저장한 파일명을 DB에 입력한다.
         PhotoFile photoFile = new PhotoFile();
         photoFile.setFilePath(filename);
@@ -68,14 +62,18 @@ public class PhotoBoardUpdateController implements PageController {
         photoFileDao.insert(photoFile);
         count++;
       }
-      
+
       if (count == 0) {
         throw new Exception("사진 파일 없음!");
       }
-      
-      txManager.commit(status);
 
+      txManager.commit(status);
       return "redirect:list";
-      
+
+    } catch (Exception e) {
+      txManager.rollback(status);
+      throw e;
+    }
   }
+
 }

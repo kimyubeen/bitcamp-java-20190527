@@ -15,13 +15,10 @@ public class BoardDeleteController implements PageController {
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
     int no = Integer.parseInt(request.getParameter("no"));
-
     if (boardDao.delete(no) == 0) {
       throw new Exception("해당 데이터가 없습니다.");
     }
-
     return "redirect:list";
   }
 }

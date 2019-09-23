@@ -10,8 +10,9 @@ import com.eomcs.lms.domain.Member;
 @Component("/member/detail")
 public class MemberDetailController implements PageController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
+
 
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
@@ -25,8 +26,6 @@ public class MemberDetailController implements PageController {
     } 
 
     request.setAttribute("member", member);
-
     return "/jsp/member/detail.jsp";
-    
   }
 }

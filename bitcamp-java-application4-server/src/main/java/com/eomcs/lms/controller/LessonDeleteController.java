@@ -8,21 +8,19 @@ import com.eomcs.lms.dao.LessonDao;
 
 @Component("/lesson/delete")
 public class LessonDeleteController implements PageController {
-
+  
   @Resource
   private LessonDao lessonDao;
 
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
+    
     int no = Integer.parseInt(request.getParameter("no"));
     if (lessonDao.delete(no) == 0) {
       throw new Exception("해당 데이터가 없습니다.");
     }
-    
     return "redirect:list";
-
   }
 }
 
