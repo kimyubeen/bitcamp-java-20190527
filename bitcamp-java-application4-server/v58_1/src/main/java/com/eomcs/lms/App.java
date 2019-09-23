@@ -3,7 +3,7 @@ package com.eomcs.lms;
 
 // 작업:
 // => DispatcherServlet 생성
-// => 다른 서블리 변경
+// => 다른 서블릿 변경
 //
 // dummy 클래스!
 // => 기존 버전에서 계속 존재했던 클래스라서 그대로 둠
