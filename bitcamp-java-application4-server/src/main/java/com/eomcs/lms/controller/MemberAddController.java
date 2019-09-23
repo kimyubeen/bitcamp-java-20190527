@@ -14,9 +14,8 @@ import com.eomcs.lms.domain.Member;
 @Component("/member/add")
 public class MemberAddController implements PageController {
 
-  String uploadDir;
-  
   @Resource
+  String uploadDir;
   private MemberDao memberDao;
 
   @Override
@@ -29,7 +28,6 @@ public class MemberAddController implements PageController {
     }
 
     Member member = new Member();
-
     member.setName(request.getParameter("name"));
     member.setEmail(request.getParameter("email"));
     member.setPassword(request.getParameter("password"));
@@ -44,6 +42,7 @@ public class MemberAddController implements PageController {
     }
 
     memberDao.insert(member);
+    
     return "redirect:list";
   }
 }

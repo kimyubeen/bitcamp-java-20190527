@@ -14,6 +14,8 @@ public class LogoutController implements PageController {
       throws IOException, ServletException {
 
     request.getSession().invalidate();
+    
     return "redirect:login";
+    
   }
 }

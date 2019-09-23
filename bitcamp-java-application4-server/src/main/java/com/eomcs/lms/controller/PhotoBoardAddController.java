@@ -21,19 +21,20 @@ import com.eomcs.lms.domain.PhotoFile;
 @Component("/photoboard/add")
 public class PhotoBoardAddController implements PageController {
 
-  String uploadDir;
-
   @Resource
+  String uploadDir;
   private PlatformTransactionManager txManager;
   private PhotoBoardDao photoBoardDao;
   private PhotoFileDao photoFileDao;
 
-
   @Override
-  public  String execute(HttpServletRequest request, HttpServletResponse response) 
+  public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    return "/jsp/photoboard/form.jsp";
+    if (request.getMethod().equalsIgnoreCase("GET")) {
+      return "/jsp/photoboard/form.jsp";
+
+    }
 
     // 트랜잭션 동작을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
@@ -42,44 +43,37 @@ public class PhotoBoardAddController implements PageController {
 
     // 정의된 트랜잭션 동작에 따라 작업을 수행할 트랜잭션 객체를 준비한다. 
     TransactionStatus status = txManager.getTransaction(def);
+    PhotoBoard photoBoard = new PhotoBoard();
+    photoBoard.setTitle(request.getParameter("title"));
+    photoBoard.setLessonNo(Integer.parseInt(request.getParameter("lessonNo")));
 
-    try {
-      PhotoBoard photoBoard = new PhotoBoard();
-      photoBoard.setTitle(request.getParameter("title"));
-      photoBoard.setLessonNo(Integer.parseInt(request.getParameter("lessonNo")));
+    photoBoardDao.insert(photoBoard);
 
-      photoBoardDao.insert(photoBoard);
-
-      int count = 0;
-      Collection<Part> parts = request.getParts();
-      for (Part part : parts) {
-        if (!part.getName().equals("filePath") || part.getSize() == 0) {
-          continue;
-        }
-        // 클라이언트가 보낸 파일을 디스크에 저장한다.
-        String filename = UUID.randomUUID().toString();
-        part.write(uploadDir + "/" + filename);
-
-        // 저장한 파일명을 DB에 입력한다.
-        PhotoFile photoFile = new PhotoFile();
-        photoFile.setFilePath(filename);
-        photoFile.setBoardNo(photoBoard.getNo());
-        photoFileDao.insert(photoFile);
-        count++;
+    int count = 0;
+    Collection<Part> parts = request.getParts();
+    for (Part part : parts) {
+      if (!part.getName().equals("filePath") || part.getSize() == 0) {
+        continue;
       }
+      // 클라이언트가 보낸 파일을 디스크에 저장한다.
+      String filename = UUID.randomUUID().toString();
+      part.write(uploadDir + "/" + filename);
 
-      if (count == 0) {
-        throw new Exception("사진 파일 없음!");
-      }
-
-      txManager.commit(status);
-
-      return "redirect:list";
-
-    } catch (Exception e) { 
-
-      txManager.rollback(status);
-
+      // 저장한 파일명을 DB에 입력한다.
+      PhotoFile photoFile = new PhotoFile();
+      photoFile.setFilePath(filename);
+      photoFile.setBoardNo(photoBoard.getNo());
+      photoFileDao.insert(photoFile);
+      count++;
     }
+
+    if (count == 0) {
+      throw new Exception("사진 파일 없음!");
+    }
+
+    txManager.commit(status);
+
+    return "redirect:list";
+
   }
 }

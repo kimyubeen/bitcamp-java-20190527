@@ -14,9 +14,8 @@ import com.eomcs.lms.domain.Member;
 @Component("/member/update")
 public class MemberUpdateController implements PageController {
 
-  String uploadDir;
-
   @Resource
+  String uploadDir;
   private MemberDao memberDao;
 
   @Override

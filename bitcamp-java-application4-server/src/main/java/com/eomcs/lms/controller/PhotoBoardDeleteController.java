@@ -44,7 +44,5 @@ public class PhotoBoardDeleteController implements PageController {
 
     return "redirect:list";
 
-    txManager.rollback(status);
-
   }
 }

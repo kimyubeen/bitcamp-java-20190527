@@ -25,6 +25,8 @@ public class MemberDetailController implements PageController {
     } 
 
     request.setAttribute("member", member);
+
     return "/jsp/member/detail.jsp";
+    
   }
 }

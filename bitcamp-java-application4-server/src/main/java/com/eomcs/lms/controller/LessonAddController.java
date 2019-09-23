@@ -20,6 +20,7 @@ public class LessonAddController implements PageController {
 
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/lesson/form.jsp";
+      
     }
     
     Lesson lesson = new Lesson();

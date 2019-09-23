@@ -24,5 +24,6 @@ public class MemberSearchController implements PageController {
     request.setAttribute("members", members);
 
     return "/jsp/member/detail.jsp";
+    
   }
 }

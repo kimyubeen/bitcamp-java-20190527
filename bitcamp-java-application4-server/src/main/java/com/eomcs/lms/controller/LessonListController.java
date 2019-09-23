@@ -15,7 +15,7 @@ public class LessonListController implements PageController {
   private LessonDao lessonDao;
 
   @Override
-  public String execute (HttpServletRequest request, HttpServletResponse response) 
+  public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
     response.setContentType("text/html;charset=UTF-8");
