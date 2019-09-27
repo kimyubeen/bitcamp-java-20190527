@@ -7,7 +7,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @ComponentScan("bitcamp.app1")
 public class App1Config {
-
+  
   @Bean
   public MultipartResolver multipartResolver() {
     // 스프링 방식으로 파일 업로드를 처리하고 싶다면,
@@ -16,6 +16,11 @@ public class App1Config {
     mr.setMaxUploadSize(10000000);
     mr.setMaxInMemorySize(2000000);
     mr.setMaxUploadSizePerFile(5000000);
-    return mr;
+    return mr; 
   }
 }
+
+
+
+
+
