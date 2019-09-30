@@ -6,6 +6,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
@@ -16,12 +18,12 @@ public class AuthController {
 
   @Resource
   private MemberDao memberDao;
-  
-  @RequestMapping("form")
+
+  @GetMapping("form")
   public void form() {
   }
-
-  @RequestMapping("login")
+  
+  @PostMapping("login")
   public String login(
       HttpServletResponse response,
       HttpSession session,
@@ -47,11 +49,11 @@ public class AuthController {
     return "redirect:../board/list";
   }
   
-  @RequestMapping("logout")
+  @GetMapping("logout")
   public String logout(HttpSession session) 
       throws Exception {
-    
     session.invalidate();
     return "redirect:form";
   }
+
 }

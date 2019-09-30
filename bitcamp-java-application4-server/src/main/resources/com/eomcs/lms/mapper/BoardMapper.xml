@@ -11,7 +11,7 @@
     <result column="cdt" property="createdDate"/>
     <result column="vw_cnt" property="viewCount"/>
   </resultMap>
-  
+
   <sql id="sql1">
     select 
       board_id,
@@ -28,7 +28,7 @@
   
   <select id="findBy" parameterType="int" resultMap="BoardMap">
     <include refid="sql1"/>
-    where board_id=#{haha}
+    where board_id=#{haha} 
   </select>
   
   <update id="increaseViewCount" parameterType="int">
@@ -39,23 +39,18 @@
   
   <insert id="insert" parameterType="Board">
     insert into lms_board(conts)
-    values(#{contents})
+    values(#{contents}) 
   </insert>
   
   <update id="update" parameterType="Board">
     update lms_board set
-    conts=#{contents}
+      conts=#{contents}
     where board_id=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from lms_board
+    delete from lms_board 
     where board_id=#{value}
   </delete>
-  
-  
-  
-  
-  
   
 </mapper>

@@ -11,6 +11,8 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.eomcs.lms.dao.PhotoBoardDao;
@@ -26,13 +28,13 @@ public class PhotoBoardController {
   @Resource private PhotoBoardDao photoBoardDao;
   @Resource private PhotoFileDao photoFileDao;
   
-  @RequestMapping("form")
+  @GetMapping("form")
   public void form() {
   }
-      
-  @RequestMapping("add")
+  
+  @PostMapping("add")
   public String add(
-      HttpServletRequest request,
+      HttpServletRequest request, 
       PhotoBoard photoBoard,
       MultipartFile[] filePath) throws Exception {
     
@@ -50,8 +52,9 @@ public class PhotoBoardController {
       
       int count = 0;
       for (MultipartFile file : filePath) {
-        if (file.getSize() == 0)
+        if (file.isEmpty())
           continue;
+        
         // 클라이언트가 보낸 파일을 디스크에 저장한다.
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(uploadDir + "/" + filename));
@@ -77,7 +80,7 @@ public class PhotoBoardController {
     }
   }
   
-  @RequestMapping("delete")
+  @GetMapping("delete")
   public String delete(int no) 
       throws Exception {
     
@@ -106,7 +109,7 @@ public class PhotoBoardController {
     }
   }
   
-  @RequestMapping("detail")
+  @GetMapping("detail")
   public void detail(Model model, int no) 
       throws Exception {
 
@@ -119,7 +122,7 @@ public class PhotoBoardController {
     model.addAttribute("photoBoard", photoBoard);
   }
   
-  @RequestMapping("list")
+  @GetMapping("list")
   public void list(Model model) 
       throws Exception {
 
@@ -127,9 +130,9 @@ public class PhotoBoardController {
     model.addAttribute("photoBoards", photoBoards);
   }
   
-  @RequestMapping("update")
+  @PostMapping("update")
   public String update(
-      HttpServletRequest request,
+      HttpServletRequest request, 
       PhotoBoard photoBoard,
       MultipartFile[] filePath) throws Exception {
 
@@ -149,8 +152,9 @@ public class PhotoBoardController {
 
       int count = 0;
       for (MultipartFile file : filePath) {
-        if (file.getSize() == 0)
+        if (file.isEmpty())
           continue;
+        
         // 클라이언트가 보낸 파일을 디스크에 저장한다.
         String filename = UUID.randomUUID().toString();
         file.transferTo(new File(uploadDir + "/" + filename));

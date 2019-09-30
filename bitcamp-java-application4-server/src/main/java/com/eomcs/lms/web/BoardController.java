@@ -4,6 +4,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
@@ -14,19 +16,19 @@ public class BoardController {
 
   @Resource
   private BoardDao boardDao;
-  
-  @RequestMapping("form")
+
+  @GetMapping("form")
   public void form() {
   }
-
-  @RequestMapping("add")
+  
+  @PostMapping("add")
   public String add(Board board) 
       throws Exception {
     boardDao.insert(board);
     return "redirect:list";
   }
-
-  @RequestMapping("delete")
+  
+  @GetMapping("delete")
   public String delete(int no) 
       throws Exception {
     if (boardDao.delete(no) == 0) {
@@ -35,7 +37,7 @@ public class BoardController {
     return "redirect:list";
   }
   
-  @RequestMapping("detail")
+  @GetMapping("detail")
   public void detail(Model model, int no) 
       throws Exception {
 
@@ -43,13 +45,12 @@ public class BoardController {
     if (board == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
     } 
-
     boardDao.increaseViewCount(no);
 
     model.addAttribute("board", board);
   }
   
-  @RequestMapping("list")
+  @GetMapping("list")
   public void list(Model model) 
       throws Exception {
     
@@ -57,10 +58,11 @@ public class BoardController {
     model.addAttribute("boards", boards);
   }
   
-  @RequestMapping("update")
+  @PostMapping("update")
   public String update(Board board) 
       throws Exception {
     boardDao.update(board);
     return "redirect:list";
   }
+
 }

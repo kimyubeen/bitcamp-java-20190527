@@ -14,7 +14,9 @@
 
 <div id='content'>
 <h1>회원 목록</h1>
+
 <a href='form'>새 회원</a><br>
+
 <table class='table table-hover'>
 <tr>
   <th>번호</th>
@@ -31,7 +33,7 @@
     <td>${member.tel}</td>
     <td>${member.registeredDate}</td>
   </tr>
-</c:forEach>
+</c:forEach> 
 </table>
 <form action='search'>
   검색어: <input type='text' name='keyword'>

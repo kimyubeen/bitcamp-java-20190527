@@ -15,8 +15,8 @@ import org.springframework.web.util.UrlPathHelper;
 @ComponentScan("com.eomcs.lms.web")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
-
-  // multipart/form-data를 처리할 때,
+  
+  // multipart/form-data 를 처리할 때,
   @Bean
   public MultipartResolver multipartResolver() {
     CommonsMultipartResolver mr = new CommonsMultipartResolver();
@@ -27,8 +27,8 @@ public class WebConfig implements WebMvcConfigurer {
     mr.setMaxUploadSizePerFile(5000000);
     return mr; 
   }
-
-  // 기본 ViewResolver 대체할 때,
+  
+  //기본 ViewResolver 대체할 때,
   @Bean
   public ViewResolver viewResolver() {
     InternalResourceViewResolver vr = new InternalResourceViewResolver(
@@ -36,7 +36,7 @@ public class WebConfig implements WebMvcConfigurer {
     return vr;
   }
   
-  // @MatrixVariable 사용할 때,
+  //@MatrixVariable 사용할 때,
   @Override
   public void configurePathMatch(PathMatchConfigurer configurer) {
     UrlPathHelper helper = new UrlPathHelper();

@@ -1,4 +1,3 @@
-<%@page import="com.eomcs.lms.domain.PhotoBoard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -15,9 +14,6 @@
     
 <div id='content'>
 <h1>사진게시물</h1>
-<%
-PhotoBoard photoBoard = (PhotoBoard) request.getAttribute("photoBoard");
-%>
 <form action='update'
       method='post' enctype='multipart/form-data'>
 번호: <input type='text' name='no' value='${photoBoard.no}' readonly><br>
@@ -25,9 +21,8 @@ PhotoBoard photoBoard = (PhotoBoard) request.getAttribute("photoBoard");
 수업: ${photoBoard.lessonNo}<br>
 조회수: ${photoBoard.viewCount}<br>
 <p>
-
 <c:forEach items="${photoBoard.files}" var="file">
-  <img src='/upload/photoboard/${file.filePath}' class='photo2'>
+  <img src='/upload/photoboard/${file.filePath}' class='photo2'> 
 </c:forEach>
 </p>
 <c:forEach begin="1" end="6">

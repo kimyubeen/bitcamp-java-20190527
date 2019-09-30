@@ -7,18 +7,16 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 //@Configuration
 @MapperScan("com.eomcs.lms.dao")
-
 public class MybatisConfig {
   
   @Bean
   public SqlSessionFactory sqlSessionFactory(
       DataSource dataSource, ApplicationContext appCtx) throws Exception {
 
-    // Mybatis의 Log4j2를 활성화 시키기
+    // Mybatis의 Log4j2를 활성화시키기 
     LogFactory.useLog4J2Logging();
     
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();

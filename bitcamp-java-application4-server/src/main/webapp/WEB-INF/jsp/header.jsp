@@ -31,7 +31,7 @@
   <a href='/app/auth/form' class='btn btn-outline-dark btn-sm'>로그인</a>
 </c:if>
 <c:if test="${not empty loginUser}">
-  <a href='/app/member/detail?no=${loginUser.no}'>${loginUser.name}</a> 
+  <a href='/member/detail?no=${loginUser.no}'>${loginUser.name}</a> 
   <a href='/app/auth/logout' class='btn btn-outline-dark btn-sm'>로그아웃</a>
 </c:if>
   </div>

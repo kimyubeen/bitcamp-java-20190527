@@ -30,7 +30,7 @@
     <td>${member.tel}</td>
     <td>${member.registeredDate}</td>
   </tr>
-</c:forEach>
+</c:forEach> 
 </table>
 </div>
 
