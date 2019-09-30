@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // => @Transaxtional 애노테이션을 처리할 객체를 등록한다.
 @EnableTransactionManagement
 
-@Configuration
+//@Configuration
 @PropertySource("classpath:com/eomcs/lms/conf/jdbc.properties")
 public class DatabaseConfig {
   
