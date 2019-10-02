@@ -34,19 +34,22 @@ public class BoardController {
   }
   
   @GetMapping("detail")
-  public void detail(Model model, int no) throws Exception {
+  public void detail(Model model, int no) 
+      throws Exception {
     Board board = boardService.get(no);
     model.addAttribute("board", board);
   }
   
   @GetMapping("list")
-  public void list(Model model) throws Exception {
+  public void list(Model model) 
+      throws Exception {
     List<Board> boards = boardService.list();
     model.addAttribute("boards", boards);
   }
   
   @PostMapping("update")
-  public String update(Board board) throws Exception {
+  public String update(Board board) 
+      throws Exception {
     boardService.update(board);
     return "redirect:list";
   }

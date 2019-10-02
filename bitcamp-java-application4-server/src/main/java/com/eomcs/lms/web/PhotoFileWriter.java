@@ -19,24 +19,18 @@ public class PhotoFileWriter {
   }
   
   public List<PhotoFile> getPhotoFiles(MultipartFile[] filePath) throws Exception {
-    
     List<PhotoFile> photoFiles = new ArrayList<>();
-
     for (MultipartFile file : filePath) {
       if (file.isEmpty())
         continue;
-
       // 클라이언트가 보낸 파일을 디스크에 저장한다.
       String filename = UUID.randomUUID().toString();
       file.transferTo(new File(uploadDir + "/" + filename));
-
-      // 저장한 파일명을 photoFile에 보관한다.
+      // 저장한 파일명을 PhotoFile에 보관한다.
       PhotoFile photoFile = new PhotoFile();
       photoFile.setFilePath(filename);
-
       photoFiles.add(photoFile);
     }
-
     return photoFiles;
   }
 }

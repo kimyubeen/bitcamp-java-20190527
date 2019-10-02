@@ -14,36 +14,37 @@ import com.eomcs.lms.service.LessonService;
 @RequestMapping("/lesson")
 public class LessonController {
 
-  @Resource private LessonService lessonService;
+  @Resource
+  private LessonService lessonService;
 
   @GetMapping("form")
   public void form() {
   }
-
+  
   @PostMapping("add")
   public String add(Lesson lesson) throws Exception {
     lessonService.insert(lesson);
     return "redirect:list";
   }
-
+  
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     lessonService.delete(no);
     return "redirect:list";
   }
-
+  
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Lesson lesson = lessonService.get(no);
     model.addAttribute("lesson", lesson);
   }
-
+  
   @GetMapping("list")
   public void list(Model model) throws Exception {
     List<Lesson> lessons = lessonService.list();
     model.addAttribute("lessons", lessons);
   }
-
+  
   @PostMapping("update")
   public String update(Lesson lesson) throws Exception {
     lessonService.update(lesson);

@@ -7,7 +7,7 @@ import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.service.BoardService;
 
-// BoardService 기본 구현체
+// BoardService 기본 구현체 
 //
 @Service
 public class DefaultBoardService implements BoardService {
@@ -46,5 +46,4 @@ public class DefaultBoardService implements BoardService {
   public void update(Board board) throws Exception {
     boardDao.update(board);
   }
-
 }

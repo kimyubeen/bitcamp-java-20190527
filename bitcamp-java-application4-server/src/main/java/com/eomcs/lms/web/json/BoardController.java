@@ -21,27 +21,11 @@ public class BoardController {
   private BoardService boardService;
 
   @PostMapping("add")
-  public JsonResult add(Board board) throws Exception {
-    
+  public JsonResult add(Board board) 
+      throws Exception {
     try {
       boardService.insert(board);
-      return new JsonResult()
-          .setState(JsonResult.SUCCESS);
-
-    } catch (Exception e) {
-      return new JsonResult()
-          .setState(JsonResult.FAILURE)
-          .setMessage(e.getMessage());
-    }
-  }
-
-  @GetMapping("delete")
-  public JsonResult delete(int no) throws Exception {
-    
-    try {
-      boardService.delete(no);
-      return new JsonResult()
-          .setState(JsonResult.SUCCESS);
+      return new JsonResult().setState(JsonResult.SUCCESS);
       
     } catch (Exception e) {
       return new JsonResult()
@@ -49,10 +33,24 @@ public class BoardController {
           .setMessage(e.getMessage());
     }
   }
-
+  
+  @GetMapping("delete")
+  public JsonResult delete(int no) 
+      throws Exception {
+    try {
+      boardService.delete(no);
+      return new JsonResult().setState(JsonResult.SUCCESS);
+      
+    } catch (Exception e) {
+      return new JsonResult()
+          .setState(JsonResult.FAILURE)
+          .setMessage(e.getMessage());
+    }
+  }
+  
   @GetMapping("detail")
-  public JsonResult detail(int no) throws Exception {
-    
+  public JsonResult detail(int no) 
+      throws Exception {
     try {
       Board board = boardService.get(no);
       return new JsonResult()
@@ -65,10 +63,10 @@ public class BoardController {
           .setMessage(e.getMessage());
     }
   }
-
+  
   @GetMapping("list")
-  public JsonResult list() throws Exception {
-    
+  public JsonResult list() 
+      throws Exception {
     try {
       List<Board> boards = boardService.list();
       return new JsonResult()
@@ -81,14 +79,13 @@ public class BoardController {
           .setMessage(e.getMessage());
     }
   }
-
+  
   @PostMapping("update")
-  public JsonResult update(Board board) throws Exception {
-    
+  public JsonResult update(Board board) 
+      throws Exception {
     try {
       boardService.update(board);
-      return new JsonResult()
-          .setState(JsonResult.SUCCESS);
+      return new JsonResult().setState(JsonResult.SUCCESS);
       
     } catch (Exception e) {
       return new JsonResult()
@@ -96,5 +93,5 @@ public class BoardController {
           .setMessage(e.getMessage());
     }
   }
-  
+
 }

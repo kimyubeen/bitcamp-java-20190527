@@ -15,3 +15,13 @@ public interface LessonService {
   void update(Lesson lesson) throws Exception;
   void delete(int no) throws Exception;
 }
+
+
+
+
+
+
+
+
+
+

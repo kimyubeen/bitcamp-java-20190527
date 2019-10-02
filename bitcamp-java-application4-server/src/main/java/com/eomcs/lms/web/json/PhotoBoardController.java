@@ -28,11 +28,10 @@ public class PhotoBoardController {
     try {
       // 사진 파일 정보를 사진 게시물에 담는다.
       photoBoard.setFiles(photoFileWriter.getPhotoFiles(filePath));
-
+      
       // 서비스 컴포넌트를 통해 데이터를 저장한다.
       photoBoardService.insert(photoBoard);
-      return new JsonResult()
-          .setState(JsonResult.SUCCESS);
+      return new JsonResult().setState(JsonResult.SUCCESS);
 
     } catch (Exception e) { 
       return new JsonResult()
@@ -42,12 +41,11 @@ public class PhotoBoardController {
   }
 
   @GetMapping("delete")
-  public JsonResult delete(int no) throws Exception {
-
+  public JsonResult delete(int no) 
+      throws Exception {
     try {
       photoBoardService.delete(no);
-      return new JsonResult()
-          .setState(JsonResult.SUCCESS);
+      return new JsonResult().setState(JsonResult.SUCCESS);
 
     } catch (Exception e) {
       return new JsonResult()
@@ -57,8 +55,8 @@ public class PhotoBoardController {
   }
 
   @GetMapping("detail")
-  public JsonResult detail(int no) throws Exception {
-
+  public JsonResult detail(int no) 
+      throws Exception {
     try {
       PhotoBoard photoBoard = photoBoardService.get(no);
       return new JsonResult()
@@ -73,8 +71,8 @@ public class PhotoBoardController {
   }
 
   @GetMapping("list")
-  public JsonResult list() throws Exception {
-
+  public JsonResult list() 
+      throws Exception {
     try {
       List<PhotoBoard> photoBoards = photoBoardService.list();
       return new JsonResult()
@@ -97,11 +95,10 @@ public class PhotoBoardController {
     try {
       // 사진 파일 정보를 사진 게시물에 담는다.
       photoBoard.setFiles(photoFileWriter.getPhotoFiles(filePath));
-
+      
       // 서비스 컴포넌트를 통해 데이터를 저장한다.
       photoBoardService.update(photoBoard);
-      return new JsonResult()
-          .setState(JsonResult.SUCCESS);
+      return new JsonResult().setState(JsonResult.SUCCESS);
 
     } catch (Exception e) { 
       return new JsonResult()
