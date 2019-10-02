@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.service.MemberService;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
 
   @Resource
-  private MemberDao memberDao;
+  private MemberService memberService;
 
   @GetMapping("form")
   public void form() {
@@ -40,7 +41,7 @@ public class AuthController {
     cookie.setMaxAge(60 * 60 * 24 * 15);
     response.addCookie(cookie);
 
-    Member member = memberDao.findByEmailPassword(params);
+    Member member = memberService.findByEmailPassword(params);
     if (member == null) {
       throw new Exception("이메일 또는 암호가 맞지 않습니다!");
     } 
