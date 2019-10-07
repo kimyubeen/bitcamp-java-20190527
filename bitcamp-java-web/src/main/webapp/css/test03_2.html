@@ -13,11 +13,12 @@
         대상자:상태명 {...}
         대상자[속성명] {...}
    */
-  input[type="text"] {
+  input[type=text] {
     background-color: yellow;
   }
 
-  input[value] { /* selected 속성의 값에 상과없이 해당 속성이 있는 경우*/
+   /* selected 속성의 값에 상과없이 해당 속성이 있는 경우*/
+  input[value][type='text'] {
     border: 3px solid red;
   }
   </style>
