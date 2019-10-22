@@ -1,7 +1,7 @@
 // v61_1 : Back-end와 Front-end 분리하기
 package com.eomcs.lms;
 
-// 작업:
+// 작업1: 게시물 관리
 // => /webapp/html/board/list.html 생성
 //
 // dummy 클래스!
