@@ -2,7 +2,29 @@
 package com.eomcs.lms;
 
 // 작업1: 게시물 관리
-// => /webapp/html/board/list.html 생성
+// => /webapp/html/board-1/list.html 생성
+// => /webapp/html/board-1/form.html 생성
+//
+// 작업2: npm(node package manager)으로 외부 CSS, JS 라이브러리 파일 관리하기
+// => 콘솔에서 /webapp 폴더로 이동
+// => 'npm init' 실행
+//      - package.json 파일 생성
+//      - 자바스크립트 라이브러리에 대한 설정 파일
+// => 'npm install bootstrap' 실행
+//      - npm을 통해 외부 라이브러리를 다운로드 한다.
+//      - npm을 실행한 폴더에 node_modules 디렉토리를 자동 생성하고
+//        이 디렉토리에 라이브러리를 자동으로 다운로드 한다.
+//      - package.json에 라이브러리 정보가 등록된다.
+//        만약 등록되지 않았다면 다음과 같이 --save 옵션을 붙여 실행하라.
+//        'npm install bootstrap --save'
+//        또는
+//        'npm install --save bootstrap'
+//      - package.json 파일에 등록된 라이브러리를 모두 자동으로 다운로드 하고 싶다면,
+//        다음과 같이 패키지 이름을 지정하지 않고 실행하라.
+//        'npm install'
+//
+// => webapp/html/board-2/list.html 변경
+//      - css, javascript 파일 경로를 각각
 //
 // dummy 클래스!
 // => 기존 버전에서 계속 존재했던 클래스라서 그대로 둠.

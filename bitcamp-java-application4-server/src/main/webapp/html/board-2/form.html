@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"> 
   <title>게시물 보기</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+  <link rel='stylesheet' href='\node_modules\bootstrap\dist\css\bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
   <link rel='stylesheet' href='/css/common.css'>
 </head>
 <body>
@@ -80,7 +80,7 @@
     <button id="btnAdd" type="button" class="btn btn-primary my-add-group">등록</button>
     <button id="btnUpdate" type="button" class="btn btn-primary my-view-group">변경</button>
     <button id="btnDelete" type="button" class="btn btn-danger my-view-group">삭제</button>
-    <button id="btnList" type="button" class="btn btn-secondary my-view-group">목록</button>
+    <button id="btnList" type="button" class="btn btn-secondary">목록</button>
   </div>
 </div>
 </form>
@@ -92,6 +92,7 @@
   <span>비트캠프, 자바130기</span>
 </div>
 
+<script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 "use strict";
 
@@ -110,6 +111,8 @@ if (i != -1) {
   if (str[0] == 'no') {
     if (!isNaN(parseInt(str[1])))
       var no = parseInt(str[1]);
+    else
+      swal('게시물 조회!', '게시물 번호고 유효하지 않습니다!', 'error')
   }
 }
 
